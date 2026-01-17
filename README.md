@@ -1,73 +1,174 @@
-# React + TypeScript + Vite
+# Gigsta Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Gigsta is building Nigeria's first on-demand home services platform, launching in Uyo, Akwa Ibom State. This repository contains the marketing website and Concierge MVP for client bookings and provider registrations.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Vision**: Connect busy professionals with vetted, reliable service providers for home cleaning, laundry, and errands.
 
-## React Compiler
+**Current Phase**: Concierge MVP - Manual operations using WhatsApp and Google Sheets while we validate the market and build our mobile apps (launching Q2 2026).
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+**This Website Serves**:
+- Client booking flow (collects service requests via forms)
+- Provider registration (onboards service providers with vetting information)
+- Waitlist collection for mobile app launch
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Framework**: Vite + React 18
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: shadcn/ui
+- **Form Management**: React Hook Form + Zod
+- **Icons**: Lucide React
+- **Package Manager**: pnpm
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+gigsta-website/
+├── public/
+│   ├── images/              # Logos, service icons, hero images
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   ├── ui/              # shadcn/ui components
+│   │   ├── layout/          # Header, Footer, Navigation
+│   │   ├── home/            # Landing page sections
+│   │   ├── forms/           # Booking & Registration forms
+│   │   └── shared/          # Reusable components
+│   ├── lib/
+│   │   ├── utils.ts         # shadcn utilities
+│   │   ├── googleSheets.ts  # Google Sheets API integration
+│   │   └── validation.ts    # Zod schemas
+│   ├── types/               # TypeScript definitions
+│   ├── constants/           # Services, pricing, locations
+│   ├── hooks/               # Custom React hooks
+│   ├── pages/               # Page components
+│   ├── App.tsx
+│   └── main.tsx
+├── .env.example
+├── components.json          # shadcn/ui config
+├── tailwind.config.js
+├── tsconfig.json
+└── vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18+ 
+- pnpm (recommended) or npm
+
+### Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/Gigsta-ng/gigsta-web-updated
+   cd gigsta-web-updated
+   ```
+
+2. Install dependencies
+   ```bash
+   pnpm install
+   ```
+
+3. Approve build scripts (pnpm security feature)
+   ```bash
+   pnpm approve-builds
+   ```
+   Select "yes" for `@swc/core` and `esbuild` when prompted.
+
+4. Setup environment variables
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Add your credentials:
+   ```env
+   VITE_GOOGLE_SHEET_URL=your_google_apps_script_url
+   VITE_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+   ```
+
+5. Run development server
+   ```bash
+   pnpm dev
+   ```
+   
+   Open http://localhost:5173 in your browser.
+
+## Setup Google Sheets Integration
+
+The website sends form submissions to Google Sheets for manual processing.
+
+### Create Google Apps Script Web App
+
+1. Create a new Google Sheet with these tabs:
+   - `Client Bookings`
+   - `Provider Registrations`
+   - `Waitlist`
+
+2. Go to **Extensions > Apps Script**
+
+3. Paste this code:
+
+```javascript
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    const sheetName = data.sheetName;
+    delete data.sheetName;
+    
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(sheetName);
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    const row = headers.map(header => data[header] || '');
+    
+    sheet.appendRow(row);
+    
+    return ContentService.createTextOutput(JSON.stringify({ success: true }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (error) {
+    return ContentService.createTextOutput(JSON.stringify({ success: false, error: error.toString() }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
 ```
+
+4. Deploy:
+   - Click **Deploy > New deployment**
+   - Type: **Web app**
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+   - Copy the Web App URL
+
+5. Add URL to `.env`:
+   ```env
+   VITE_GOOGLE_SHEET_URL=https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec
+   ```
+
+## Available Scripts
+
+```bash
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm preview      # Preview production build
+pnpm lint         # Run ESLint
+```
+
+## Adding shadcn/ui Components
+
+To add new shadcn components:
+
+```bash
+pnpm dlx shadcn@latest add [component-name]
+```
+
+Example:
+```bash
+pnpm dlx shadcn@latest add dropdown-menu
+```
+
+## License
+
+Proprietary - © 2026 Gigsta. All rights reserved.
