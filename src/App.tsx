@@ -1,12 +1,25 @@
-import { Button } from "./components/ui/button"
+import Navbar from "./components/layout/Navbar";
+import HeroSection from "./components/home/HeroSection";
+import WhatGigstaDoes from "./components/home/WhatGigstaDoes";
+import Services from "./components/home/Services";
+import HowGigstaWorks from "./components/home/HowGigstaWorks";
+import Testimonial from "./components/home/Testimonial";
+import Faqs from "./components/home/Faqs";
+import Footer from "./components/layout/Footer";
 
 function App() {
-
   return (
-   <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
-  )
+    <>
+      <Navbar />
+      <HeroSection />
+      <WhatGigstaDoes />
+      <Services />
+      <HowGigstaWorks />
+      <Testimonial />
+      <Faqs />
+      <Footer />
+    </>
+  );
 }
 
-export default App
+export default App;
