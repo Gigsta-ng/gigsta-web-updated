@@ -3,10 +3,12 @@ import { MoveRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section
-      className="relative h-screen w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5"
-      id="home"
-    >
+    // <section
+    //   className="relative h-screen w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5"
+    //   id="home"
+    // >
+      <section className="relative min-h-screen w-full">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
@@ -48,6 +50,7 @@ const HeroSection = () => {
             Get Job Leads
           </Button>
         </div>
+      </div>
       </div>
     </section>
   );

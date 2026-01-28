@@ -5,11 +5,13 @@ import { MoveRight } from "lucide-react";
 const Services = () => {
 
   return (
-    <section
-      className="w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5"
-      id="services"
-    >
-      <div className="max-w-7xl mx-auto">
+    // <section
+    //   className="w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5"
+     
+    // >
+    //   <div className="max-w-7xl mx-auto">
+    <section className="py-20  min-h-screen w-full">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl  md:text-[50px] font-bold text-[#0D0F11] leading-[1.2] ">
             Our Services
@@ -23,7 +25,7 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
  
-          <div className="relative h-65 rounded-2xl overflow-hidden">
+          <div className="relative h-65 md:h-80 lg:h-85 rounded-2xl overflow-hidden">
             <img
               src={image4}
               alt="Professional cleaning service"
@@ -42,7 +44,7 @@ const Services = () => {
             </div>
           </div>
 
-          <div className="relative h-65 rounded-2xl overflow-hidden">
+          <div className="relative  h-65 md:h-80 lg:h-85 rounded-2xl overflow-hidden">
             <img
               src={image3}
               alt="Professional cooking service"

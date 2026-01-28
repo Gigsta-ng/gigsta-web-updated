@@ -64,8 +64,13 @@ const Testimonial = () => {
 
 const swiperRef = useRef<SwiperType | null>(null);
   return (
-    <section className="bg-gray-50 w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5">
-      <div className="max-w-7xl mx-auto">
+    // <section className="bg-gray-50 w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5">
+    //   <div className="max-w-7xl mx-auto">
+         <section className="py-20  bg-gray-50 min-h-screen w-full">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+
+             {/* <section className="py-20 bg-[#F0A500] min-h-screen w-full">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> */}
         <div className="text-center mb-14">
           <div className="inline-block bg-[#F0A500]/12 px-6 py-3 rounded-4xl mx-auto mb-6">
             <h3 className="text-2xl font-medium text-[#F0A500] tracking-wide">
@@ -81,7 +86,6 @@ const swiperRef = useRef<SwiperType | null>(null);
             services. Here’s what they have to say about working with us.
           </p>
         </div>
-      </div>
 
       <Swiper
         modules={[Autoplay]}
@@ -99,7 +103,7 @@ const swiperRef = useRef<SwiperType | null>(null);
         {testimonials.map((t) => (
           <SwiperSlide key={t.id}>
             <div
-              className="bg-white  rounded-xl shadow-md h-full flex flex-col items-center text-center  px-8 pt-10
+              className="bg-white  rounded-xl shadow-md h-full flex flex-col items-center text-center px-8 pt-10
                          transform transition-transform duration-500 hover:scale-105
                          opacity-0 animate-fadeIn"
               style={{ animationDelay: `${t.id * 0.2}s` }}
@@ -169,6 +173,8 @@ const swiperRef = useRef<SwiperType | null>(null);
           animation: fadeIn 0.2s forwards;
         }
       `}</style>
+      </div>
+
     </section>
   );
 };

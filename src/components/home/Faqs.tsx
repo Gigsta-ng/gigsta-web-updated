@@ -42,9 +42,10 @@ const Faqs = () => {
     setOpenId(openId === id ? null : id);
   };
   return (
-    <section className="w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5  bg-[#F0A500] ">
-      <div className="max-w-7xl mx-auto">
-
+    // <section className="w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5  bg-[#F0A500] ">
+    //   <div className="max-w-7xl mx-auto">
+      <section className="py-20 bg-[#F0A500] min-h-screen w-full">
+     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-center text-3xl sm:text-4xl md:text-5xl mb-14 font-bold leading-[1.2] text-[#0D0F11]">
           Frequently Asked Questions
         </h2>

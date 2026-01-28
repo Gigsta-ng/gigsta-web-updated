@@ -4,8 +4,10 @@ import { PlaneIcon } from "@/assets/icons/svg";
 const Footer = () => {
   return (
       
-    <footer className="bg-gray-50 ">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5 py-16">
+    <footer className="bg-gray-50 w-full ">
+      {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5 py-16"> */}
+        {/* {/* <section className="py-20 bg-gray-50 min-h-screen w-full"> */}
+  <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8"> 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
 
           <div>
