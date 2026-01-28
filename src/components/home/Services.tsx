@@ -10,8 +10,10 @@ const Services = () => {
      
     // >
     //   <div className="max-w-7xl mx-auto">
-    <section className="py-20  min-h-screen w-full">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  //   <section className="py-20  min-h-screen w-full">
+  // <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 md:py-20 min-h-screen w-full flex items-center">
+  <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl  md:text-[50px] font-bold text-[#0D0F11] leading-[1.2] ">
             Our Services

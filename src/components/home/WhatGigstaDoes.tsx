@@ -28,8 +28,13 @@ export default function WhatGigstaDoes() {
   return (
     // <section className="bg-gray-50 w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5">
     //   <div className="max-w-7xl mx-auto">
-<section className="py-20 bg-gray-50 min-h-screen w-full">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section className="py-20 md:py-20 bg-gray-50 min-h-screen w-full flex items-center">
+  <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+    
+        {/* <section className="min-h-screen w-full bg-[#F0A500] flex items-center py-20 md:py-0">
+  <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8"> */}
+
+
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl  md:text-[50px] font-bold  leading-[1.2] ">
             What Gigsta Does

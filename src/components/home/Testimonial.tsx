@@ -66,8 +66,11 @@ const swiperRef = useRef<SwiperType | null>(null);
   return (
     // <section className="bg-gray-50 w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5">
     //   <div className="max-w-7xl mx-auto">
-         <section className="py-20  bg-gray-50 min-h-screen w-full">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+  //        <section className="py-20  bg-gray-50 min-h-screen w-full">
+  // <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> 
+
+    <section className="py-20 md:py-20 bg-gray-50 min-h-screen w-full flex items-center">
+  <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
 
              {/* <section className="py-20 bg-[#F0A500] min-h-screen w-full">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> */}

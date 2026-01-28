@@ -7,8 +7,10 @@ const HeroSection = () => {
     //   className="relative h-screen w-full overflow-hidden px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5"
     //   id="home"
     // >
-      <section className="relative min-h-screen w-full">
+      <section className="relative min-h-screen w-full flex items-center">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* <section className="min-h-screen w-full bg-[#F0A500] flex items-center py-20 md:py-0">
+  <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8"> */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
