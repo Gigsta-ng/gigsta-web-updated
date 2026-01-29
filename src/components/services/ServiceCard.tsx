@@ -62,7 +62,7 @@ const ServiceCard = ({ service }: Props) => {
             </ul>
           </div>
         )}
-
+      <div className="border-t border-gray-200 mb-6"></div>
         {secondary && (
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-2">
@@ -94,7 +94,7 @@ const ServiceCard = ({ service }: Props) => {
           </div>
         )}
 
-          <Button className="w-full bg-[#F0A500] hover:bg-[#d89400] text-white font-semibold mt-auto">
+          <Button className="w-full bg-[#F0A500] hover:bg-[#d89400] text-white font-semibold mt-auto cursor-pointer">
             Book Now →
           </Button>
 
