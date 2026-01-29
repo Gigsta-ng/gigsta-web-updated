@@ -40,7 +40,7 @@ export default function WhatGigstaDoes() {
             What Gigsta Does
           </h2>
     
-          <p className="mt-4.5 text-[#535353]  mx-auto font-medium text-lg md:text-xl leading-relaxed">
+          <p className="mt-4.5 text-[#535353]  mx-auto font-medium max-w-2xl text-lg md:text-xl leading-relaxed">
             Gigsta makes sure expectations are clear for both clients and providers.
           </p>
         </div>
