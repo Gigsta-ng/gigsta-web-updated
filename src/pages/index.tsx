@@ -6,7 +6,7 @@ import Services from "@/components/home/Services";
 import HowGigstaWorks from "@/components/home/HowGigstaWorks";
 import Testimonial from "@/components/home/Testimonial";
 import Faqs from "@/components/home/Faqs";
-// import Footer from "@/components/layout/Footer";
+import Footer from "@/components/layout/Footer";
 
 const HomePage = () => {
   return (
@@ -18,7 +18,7 @@ const HomePage = () => {
       <HowGigstaWorks />
       <Testimonial />
       <Faqs />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

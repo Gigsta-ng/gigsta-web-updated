@@ -1,4 +1,4 @@
-import FooterBottom from "./FooterBottom";
+
 import { PlaneIcon } from "@/assets/icons/svg";
 
 const Footer = () => {
@@ -99,7 +99,6 @@ const Footer = () => {
         </div>
       </div>
 
-      <FooterBottom />
     </footer>
   );
 };

@@ -1,7 +1,7 @@
 import { CheckCircleIcon, PostTaskIcon, JobDoneIcon } from "@/assets/icons/svg";
 import { Button } from "../ui/button";
 import { MoveRight } from "lucide-react";
-
+import { NavLink } from "react-router-dom";
 
 const HowGigstaWorks = () => {
  const steps = [
@@ -64,7 +64,11 @@ const HowGigstaWorks = () => {
 
   <div className="text-center mt-8">
           <Button className="shadow-[0_4px_4px_4px_rgba(0,0,0,0.15)] cursor-pointer  bg-[#F0A500] inline-flex items-center gap-2 text-white font-semibold text-base hover:gap-3 transition-all duration-300">
-            Learn More  <MoveRight className="h-4 w-4" />
+             <NavLink to="/services" >
+             <div className="flex gap-1 items-center"> Request a Service  <MoveRight className="h-4 w-4" /></div>
+               
+            </NavLink> 
+          
           </Button>
         </div>
  

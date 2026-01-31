@@ -16,7 +16,7 @@ const HeroSection = () => {
         playsInline
         poster="/images/hero1.jpg"
       >
-        <source src="/videos/hero-video.mp4" type="video/mp4" />
+        <source src="/videos/hero-video1.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
