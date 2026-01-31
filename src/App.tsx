@@ -1,14 +1,6 @@
-// import HomePage from "@/pages";
-
-// function App() {
-//   return <HomePage />;
-// }
-
-// export default App;
-
-import React from "react";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+// import Footer from "@/components/layout/Footer";
+import FooterBottom from "./components/layout/FooterBottom";
 import { Outlet } from "react-router-dom";
 
 const App = () => {
@@ -18,7 +10,7 @@ const App = () => {
       <main>
         <Outlet />
       </main>
-      <Footer />
+      <FooterBottom />
     </>
   );
 };
