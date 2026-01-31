@@ -1,13 +1,13 @@
-// import Navbar from "@/components/layout/Navbar";
-// import Footer from "@/components/layout/Footer";
-import Services from "@/components/services/ServiceSection";
 
+import Services from "@/components/services/ServiceSection";
+import Waitlist from "@/components/services/Waitlist";
 const ServicesPage = () => {
   return (
     <>
-      {/* <Navbar /> */}
+
       <Services />
-      {/* <Footer /> */}
+      <Waitlist />
+   
     </>
   );
 };

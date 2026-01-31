@@ -6,77 +6,58 @@ import { Fade as Hamburger } from "hamburger-react";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
-  };
+  // const scrollToSection = (id: string) => {
+  //   document.getElementById(id)?.scrollIntoView({
+  //     behavior: "smooth",
+  //   });
+  // };
 
   return (
     // <nav className="px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5 navbar sticky top-0 bg-white z-50 cursor-pointer">
-      <nav className="sticky top-0 bg-white z-50">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//       <nav className="sticky top-0 bg-white z-50">
+//   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div className="flex justify-between items-center">
-        <img
-          src="/images/logo.svg"
-          alt="Gigsta logo – a local services marketplace"
-          className="w-10 h-14 sm:w-15 sm:h-19"
-        />
+//       <div className="flex justify-between items-center bg-green-500">
+//         <img
+//           src="/images/logo.svg"
+//           alt="Gigsta logo – a local services marketplace"
+//           className="w-10 h-14 sm:w-15 sm:h-19"
+//         />
 
-        {/* <ul className="navLinks hidden md:flex items-center gap-10 font-medium">
-          <li
-            onClick={() => scrollToSection("home")}
-            className="hover:text-[#F0A500]"
-          >
-            Home
-          </li>
-          <li
-            onClick={() => scrollToSection("services")}
-            className="hover:text-[#F0A500]"
-          >
-            Services
-          </li>
-          <li
-            onClick={() => scrollToSection("how-it-works")}
-            className="hover:text-[#F0A500]"
-          >
-            How it Works
-          </li>
-          <li
-            onClick={() => scrollToSection("trust-and-safety")}
-            className="hover:text-[#F0A500]"
-          >
-            Trust and Safety
-          </li>
+//  <ul className="hidden md:flex items-center gap-10 font-medium">
+<nav className="sticky top-0 bg-white z-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center">
+    
+    <div className="flex justify-between items-center w-full">
+      <img
+        src="/images/logo.svg"
+        alt="Gigsta logo"
+        className="h-14 w-auto "
+      />
 
-          <Button className="bg-[#F0A500] text-white font-semibold">
-            Become a Provider
-          </Button>
-        </ul> */}
- <ul className="hidden md:flex items-center gap-10 font-medium">
-          <li>
+      <ul className="hidden md:flex items-center gap-10 font-medium">
+          <li className="hover:text-[#F0A500]">
             <NavLink to="/" className={({ isActive }) => isActive ? "text-[#F0A500]" : ""}>
               Home
             </NavLink>
           </li>
-          <li>
+          <li className="hover:text-[#F0A500]">
             <NavLink to="/services" className={({ isActive }) => isActive ? "text-[#F0A500]" : ""}>
               Services
             </NavLink>
           </li>
-          <li>
+          <li className="hover:text-[#F0A500]">
             <NavLink to="/how-it-works" className={({ isActive }) => isActive ? "text-[#F0A500]" : ""}>
               How it Works
             </NavLink>
           </li>
-          <li>
+          <li className="hover:text-[#F0A500]">
             <NavLink to="/trust-and-safety" className={({ isActive }) => isActive ? "text-[#F0A500]" : ""}>
               Trust and Safety
             </NavLink>
           </li>
 
-          <Button className="bg-[#F0A500] text-white font-semibold">
+          <Button className="bg-[#F0A500]  hover:bg-yellow-600 text-white font-semibold cursor-pointer">
             <NavLink to="/provider">Become a Provider</NavLink>
           </Button>
         </ul>
@@ -98,8 +79,8 @@ const Navbar = () => {
   {[
     { label: "Home", path: "/" },
     { label: "Services", path: "/services" },
-    { label: "How it Works", path: "/" }, 
-    { label: "Trust & Safety", path: "/" }, 
+    { label: "How it Works", path: "/how-it-works" }, 
+    { label: "Trust & Safety", path: "/trust-and-safety" }, 
   ].map((item) => (
     <NavLink
       key={item.label}

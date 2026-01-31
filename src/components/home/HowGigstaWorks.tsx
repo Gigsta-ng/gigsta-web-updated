@@ -26,18 +26,15 @@ const HowGigstaWorks = () => {
   ];
 
   return (
-    //  <section
-    //   className="w-full min-h-screen py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5  bg-[#F0A500] " id="how-it-works"
-    // >
-    //   <div className="max-w-7xl mx-auto">
-        <section className="py-20 bg-[#F0A500] min-h-screen w-full">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  
+        <section className="min-h-screen w-full bg-[#F0A500] flex items-center py-20 md:py-20">
+  <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl md:text-[50px] font-bold leading-[1.2] text-[#0D0F11]">
             How Gigsta Works
           </h2>
 
-          <p className="mt-4.5  mx-auto font-medium text-lg md:text-xl leading-relaxed text-[#0D0F11]">
+          <p className="mt-4.5  mx-auto font-medium max-w-2xl  text-lg md:text-xl leading-relaxed text-[#0D0F11]">
             Getting things done has never been easier. Just follow these simple steps to get started with skilled professionals.
           </p>
         </div>
@@ -66,7 +63,7 @@ const HowGigstaWorks = () => {
  
 
   <div className="text-center mt-8">
-          <Button className="shadow-[0_4px_4px_0_rgba(0,0,0,0.15)]  bg-[#F0A500] inline-flex items-center gap-2 text-white font-semibold text-base hover:gap-3 transition-all duration-300">
+          <Button className="shadow-[0_4px_4px_4px_rgba(0,0,0,0.15)] cursor-pointer  bg-[#F0A500] inline-flex items-center gap-2 text-white font-semibold text-base hover:gap-3 transition-all duration-300">
             Learn More  <MoveRight className="h-4 w-4" />
           </Button>
         </div>
