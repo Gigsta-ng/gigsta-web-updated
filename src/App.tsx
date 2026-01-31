@@ -1,12 +1,26 @@
-import { Button } from "./components/ui/button"
+// import HomePage from "@/pages";
 
-function App() {
+// function App() {
+//   return <HomePage />;
+// }
 
+// export default App;
+
+import React from "react";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { Outlet } from "react-router-dom";
+
+const App = () => {
   return (
-   <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
-  )
-}
+    <>
+      <Navbar />
+      <main>
+        <Outlet />
+      </main>
+      <Footer />
+    </>
+  );
+};
 
-export default App
+export default App;
