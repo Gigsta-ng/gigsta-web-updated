@@ -6,6 +6,7 @@ import App from "./App";
 import HomePage from "./pages/index";
 import ServicesPage from "./pages/services";
 import ProviderFormPage from "./pages/ProviderForm";
+import ApplicationSuccess from "./pages/ApplicationSuccess";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { path: "/", element: <HomePage /> },
       { path: "/services", element: <ServicesPage /> },
       { path: "/provider", element: <ProviderFormPage /> },
+      { path: "/provider/success", element: <ApplicationSuccess />},
     ],
   },
 ]);

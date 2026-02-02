@@ -1,18 +1,25 @@
 import { z } from "zod";
 
+const requiredSelect = (message: string) =>
+  z.string().min(1, message); // ✅ disallows ""
+
+
 export const providerSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
+
   whatsappNumber: z
     .string()
     .min(10, "Enter a valid WhatsApp number")
     .max(16, "Enter a valid WhatsApp number"),
+
   emailAddress: z.string().email("Enter a valid email address"),
 
-  gender: z.enum(["female", "male", "other"], {
-    message: "Please select a gender",
-  }),
+  // ✅ allow empty at first, validate required with min(1)
+  gender: requiredSelect("Please select a gender").refine(
+    (v) => ["female", "male", "other"].includes(v),
+    "Please select a valid gender"
+  ),
 
-  // Keep it as string (because <input type="date" /> gives string)
   dateOfBirth: z
     .string()
     .min(1, "Date of birth is required")
@@ -32,35 +39,40 @@ export const providerSchema = z.object({
 
   location: z.string().min(2, "Location is required"),
 
-  primaryService: z.enum(
-    [
-      "house-cleaning",
-      "personal-chef",
-      "laundry-ironing",
-      "plumbing",
-      "gardening",
-      "others",
-    ],
-    { message: "Please select your primary service" }
+  primaryService: requiredSelect("Please select your primary service").refine(
+    (v) =>
+      [
+        "house-cleaning",
+        "personal-chef",
+        "laundry-ironing",
+        "plumbing",
+        "gardening",
+        "others",
+      ].includes(v),
+    "Please select a valid primary service"
   ),
 
-  yearsOfExperience: z.enum(["less-than-1", "1-3", "3-5", "5+"], {
-    message: "Please select experience level",
-  }),
+  yearsOfExperience: requiredSelect("Please select experience level").refine(
+    (v) => ["less-than-1", "1-3", "3-5", "5+"].includes(v),
+    "Please select a valid experience level"
+  ),
 
   operateLocation: z.string().min(2, "Where you operate is required"),
 
-  availability: z.enum(["weekdays", "weekends", "both"], {
-    message: "Please select availability",
-  }),
+  availability: requiredSelect("Please select availability").refine(
+    (v) => ["weekdays", "weekends", "both"].includes(v),
+    "Please select a valid availability"
+  ),
 
-  availabilityTime: z.enum(["morning", "afternoon", "evening", "anytime"], {
-    message: "Please select availability time",
-  }),
+  availabilityTime: requiredSelect("Please select availability time").refine(
+    (v) => ["morning", "afternoon", "evening", "anytime"].includes(v),
+    "Please select a valid availability time"
+  ),
 
-  howDoYouCharge: z.enum(["hourly", "per-job", "both"], {
-    message: "Please select how you charge",
-  }),
+  howDoYouCharge: requiredSelect("Please select how you charge").refine(
+    (v) => ["hourly", "per-job", "both"].includes(v),
+    "Please select a valid charging method"
+  ),
 
   averageCharge: z.string().min(2, "Average charge is required"),
 
@@ -68,10 +80,7 @@ export const providerSchema = z.object({
     .string()
     .min(20, "Please provide more detail (at least 20 characters)"),
 
-  // Make it boolean, then validate it's true
-  terms: z
-    .boolean()
-    .refine((v) => v === true, "You must agree to the terms"),
+  terms: z.boolean().refine((v) => v === true, "You must agree to the terms"),
 });
 
 export type ProviderFormValues = z.infer<typeof providerSchema>;
