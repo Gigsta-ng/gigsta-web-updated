@@ -12,7 +12,6 @@ export const providerSchema = z.object({
     message: "Please select a gender",
   }),
 
-  // Keep it as string (because <input type="date" /> gives string)
   dateOfBirth: z
     .string()
     .min(1, "Date of birth is required")
@@ -68,7 +67,7 @@ export const providerSchema = z.object({
     .string()
     .min(20, "Please provide more detail (at least 20 characters)"),
 
-  // Make it boolean, then validate it's true
+
   terms: z
     .boolean()
     .refine((v) => v === true, "You must agree to the terms"),
