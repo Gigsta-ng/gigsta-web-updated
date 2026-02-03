@@ -68,7 +68,7 @@ const ApplicationSuccess = () => {
             Thank you for applying to become a Gigsta provider. We've received your application and will review it within 24 hours
           </p>
 
-          <div className="mt-12 bg-yellow-50 border border-yellow-100 rounded-lg p-8 text-left">
+          <div className="mt-12  bg-[#ffc300]/8 border border-yellow-400  rounded-lg p-8 text-left">
             <h2 className="text-xl font-semibold text-gray-900 mb-6">
               What's Next?
             </h2>
@@ -90,7 +90,7 @@ const ApplicationSuccess = () => {
             </div>
           </div>
 
-          {/* Optional: Return Home Button */}
+    
          <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
             <Button
               className="bg-[#F0A500] hover:bg-[#d89400] text-white font-semibold"
@@ -107,6 +107,16 @@ const ApplicationSuccess = () => {
               Submit another application
             </Button>
           </div>
+
+          <p className="mt-8 text-sm text-gray-500">
+            Need help? Contact us at{" "}
+            <a
+              href="mailto:support@gigsta.com"
+              className="text-[#F0A500] hover:underline font-medium"
+            >
+              support@gigsta.com
+            </a>
+          </p>
         </div>
       </main>
     </div>

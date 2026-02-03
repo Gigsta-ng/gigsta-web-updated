@@ -7,6 +7,8 @@ import HomePage from "./pages/index";
 import ServicesPage from "./pages/services";
 import ProviderFormPage from "./pages/ProviderForm";
 import ApplicationSuccess from "./pages/ApplicationSuccess";
+import ServiceRequestPage from "./pages/RequestServiceForm";
+import RequestSuccess from "./pages/RequestSuccess";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,8 @@ const router = createBrowserRouter([
       { path: "/services", element: <ServicesPage /> },
       { path: "/provider", element: <ProviderFormPage /> },
       { path: "/provider/success", element: <ApplicationSuccess />},
+      { path: "/request-service", element: <ServiceRequestPage />},
+      { path: "request/success", element: <RequestSuccess />}
     ],
   },
 ]);
