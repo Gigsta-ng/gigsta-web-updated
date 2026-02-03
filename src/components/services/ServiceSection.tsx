@@ -3,7 +3,7 @@ import ServiceCard from "./ServiceCard";
 
 const ServiceSection = () => {
   return (
-       <section className="py-16 md:py-16 min-h-screen w-full flex items-center">
+       <section className="bg-gray-50 py-16 md:py-16 min-h-screen w-full flex items-center">
   <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl  md:text-[50px] font-bold text-[#0D0F11] leading-[1.2] ">

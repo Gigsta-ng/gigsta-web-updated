@@ -77,7 +77,7 @@ const HowGigstaWorks = () => {
   
 
   return (
-    <section className="min-h-screen w-full bg-[#F0F0F0] flex items-center py-20 md:py-20">
+    <section className="min-h-screen w-full bg-gray-50 flex items-center py-20 md:py-20">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl md:text-[50px] font-bold leading-[1.2] text-[#0D0F11]">

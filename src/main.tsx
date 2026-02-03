@@ -10,6 +10,7 @@ import ApplicationSuccess from "./pages/ApplicationSuccess";
 import ServiceRequestPage from "./pages/RequestServiceForm";
 import RequestSuccess from "./pages/RequestSuccess";
 import HowItWorks from "./pages/HowItWorks";
+import TrustAndSafety from "./pages/TrustAndSafety";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,9 @@ const router = createBrowserRouter([
       { path: "/request-service", element: <ServiceRequestPage /> },
       { path: "request/success", element: <RequestSuccess /> },
       { path: "/how-it-works", element: <HowItWorks /> },
+      { path: "/trust-and-safety", element: <TrustAndSafety /> },
+
+
     ],
   },
 ]);

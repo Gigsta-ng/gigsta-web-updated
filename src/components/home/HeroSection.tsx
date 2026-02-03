@@ -48,7 +48,7 @@ const HeroSection = () => {
           </Button>
 
           <Button className="w-full sm:w-auto bg-white hover:bg-gray-100  text-black font-semibold text-base py-5 px-6 rounded-lg transition-colors cursor-pointer">
-            Get Job Leads
+           <NavLink to="/provider">Get Job Leads</NavLink> 
           </Button>
         </div>
       </div>

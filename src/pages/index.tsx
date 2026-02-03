@@ -11,7 +11,6 @@ import Footer from "@/components/layout/Footer";
 const HomePage = () => {
   return (
     <>
-      {/* <Navbar /> */}
       <HeroSection />
       <WhatGigstaDoes />
       <Services />
