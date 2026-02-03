@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 // import { Label } from "@/components/ui/label";
@@ -26,24 +27,27 @@ import {
 import { providerSchema, type ProviderFormValues } from "./schemas/providerSchema";
 
 const ProviderForm = () => {
+const navigate = useNavigate();
+
+
 const form = useForm<ProviderFormValues>({
   resolver: zodResolver(providerSchema),
   defaultValues: {
-    fullName: "",
+     fullName: "",
     whatsappNumber: "",
     emailAddress: "",
-    gender: undefined,
-    dateOfBirth: "",          
+    gender: "",                 // ✅
+    dateOfBirth: "",
     location: "",
-    primaryService: undefined,
-    yearsOfExperience: undefined,
+    primaryService: "",         // ✅
+    yearsOfExperience: "",      // ✅
     operateLocation: "",
-    availability: undefined,
-    availabilityTime: undefined,
-    howDoYouCharge: undefined,
+    availability: "",           // ✅
+    availabilityTime: "",       // ✅
+    howDoYouCharge: "",         // ✅
     averageCharge: "",
     additionalDetails: "",
-    terms: false,             
+    terms: false,        
   },
   mode: "onTouched",
 });
@@ -52,10 +56,18 @@ const form = useForm<ProviderFormValues>({
     console.log("Provider application:", values);
 
     form.reset();
+
+    navigate("/provider/success", {
+    replace: true,
+    state: {
+      fullName: values.fullName,
+      primaryService: values.primaryService,
+    },
+  });
   };
 
   return (
-    <section className="py-16 min-h-screen w-full flex items-center">
+    <section className="py-16 min-h-screen bg-gray-50  w-full flex items-center">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl md:text-[50px] font-bold text-[#0D0F11] leading-[1.2]">
@@ -66,6 +78,8 @@ const form = useForm<ProviderFormValues>({
             Tell us what you need and we’ll match you with a verified professional.
           </p>
         </div>
+
+        
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -150,7 +164,7 @@ const form = useForm<ProviderFormValues>({
                       <FormLabel className="text-sm font-normal text-gray-900">
                         Gender <span className="text-red-500">*</span>
                       </FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value  ?? ""}>
                         <FormControl>
                           <SelectTrigger className="h-11 border-gray-300 text-sm">
                             <SelectValue placeholder="Select gender" />
@@ -225,7 +239,7 @@ const form = useForm<ProviderFormValues>({
                       <FormLabel className="text-sm font-normal text-gray-900">
                         Primary Service <span className="text-red-500">*</span>
                       </FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value  ?? ""}>
                         <FormControl>
                           <SelectTrigger className="h-11 border-gray-300 text-sm">
                             <SelectValue placeholder="Choose your primary service" />
@@ -253,7 +267,7 @@ const form = useForm<ProviderFormValues>({
                       <FormLabel className="text-sm font-normal text-gray-900">
                         Years of Experience <span className="text-red-500">*</span>
                       </FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value  ?? ""}>
                         <FormControl>
                           <SelectTrigger className="h-11 border-gray-300 text-sm">
                             <SelectValue placeholder="Select experience level" />
@@ -308,7 +322,7 @@ const form = useForm<ProviderFormValues>({
                       <FormLabel className="text-sm font-normal text-gray-900">
                         Availability <span className="text-red-500">*</span>
                       </FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value  ?? ""}>
                         <FormControl>
                           <SelectTrigger className="h-11 border-gray-300 text-sm">
                             <SelectValue placeholder="When can you work" />
@@ -333,13 +347,14 @@ const form = useForm<ProviderFormValues>({
                       <FormLabel className="text-sm font-normal text-gray-900">
                         Availability Time <span className="text-red-500">*</span>
                       </FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value  ?? ""}>
                         <FormControl>
                           <SelectTrigger className="h-11 border-gray-300 text-sm">
-                            <SelectValue placeholder="Morning" />
+                            <SelectValue placeholder="Select Availabilty" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
+                        
                           <SelectItem value="morning">Morning</SelectItem>
                           <SelectItem value="afternoon">Afternoon</SelectItem>
                           <SelectItem value="evening">Evening</SelectItem>
@@ -361,10 +376,10 @@ const form = useForm<ProviderFormValues>({
                       <FormLabel className="text-sm font-normal text-gray-900">
                         How Do You Charge? <span className="text-red-500">*</span>
                       </FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                      <Select onValueChange={field.onChange} value={field.value  ?? ""}>
                         <FormControl>
                           <SelectTrigger className="h-11 border-gray-300 text-sm">
-                            <SelectValue placeholder="Hourly" />
+                            <SelectValue placeholder="Select charging method" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
@@ -445,6 +460,7 @@ const form = useForm<ProviderFormValues>({
 
             <Button
               type="submit"
+                onClick={() => console.log("Errors:", form.formState.errors)}
               disabled={form.formState.isSubmitting}
               className="w-full bg-[#F0A500] hover:bg-[#d89400] text-white font-semibold cursor-pointer"
             >
