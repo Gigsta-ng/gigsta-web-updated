@@ -1,5 +1,5 @@
 import React from "react";
-import './index.css'
+import "./index.css";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
@@ -9,18 +9,20 @@ import ProviderFormPage from "./pages/ProviderForm";
 import ApplicationSuccess from "./pages/ApplicationSuccess";
 import ServiceRequestPage from "./pages/RequestServiceForm";
 import RequestSuccess from "./pages/RequestSuccess";
+import HowItWorks from "./pages/HowItWorks";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />, 
+    element: <App />,
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/services", element: <ServicesPage /> },
       { path: "/provider", element: <ProviderFormPage /> },
-      { path: "/provider/success", element: <ApplicationSuccess />},
-      { path: "/request-service", element: <ServiceRequestPage />},
-      { path: "request/success", element: <RequestSuccess />}
+      { path: "/provider/success", element: <ApplicationSuccess /> },
+      { path: "/request-service", element: <ServiceRequestPage /> },
+      { path: "request/success", element: <RequestSuccess /> },
+      { path: "/how-it-works", element: <HowItWorks /> },
     ],
   },
 ]);
@@ -28,5 +30,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
