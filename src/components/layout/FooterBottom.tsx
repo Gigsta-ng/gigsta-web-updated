@@ -5,7 +5,6 @@ const FooterBottom = () => {
     <div className="bg-[#F0A500]/20 w-full">
         <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6"> 
 
-      {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-17.5 py-6 flex flex-col md:flex-row items-center justify-between gap-6"> */}
 
         <p className="text-sm text-[#0D0F11]">
           © Copyrights 2026. All rights reserved.

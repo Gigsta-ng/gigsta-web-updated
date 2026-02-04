@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const serviceRequestSchema = z.object({
-  // Personal Information
+
   fullName: z
     .string()
     .min(2, "Full name must be at least 2 characters")
@@ -18,7 +18,7 @@ export const serviceRequestSchema = z.object({
     .email("Please enter a valid email address")
     .min(1, "Email address is required"),
 
-  // Service Details
+
   selectService: z
     .string()
     .min(1, "Please select a service"),

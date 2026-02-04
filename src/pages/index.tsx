@@ -1,5 +1,3 @@
-// Page components
-// import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/home/HeroSection";
 import WhatGigstaDoes from "@/components/home/WhatGigstaDoes";
 import Services from "@/components/home/Services";

@@ -48,11 +48,7 @@ const ServiceRequestForm = () => {
   const onSubmit = async (values: ServiceRequestFormValues) => {
     console.log("Service request:", values);
 
-    // TODO: Send to API
-    // await fetch('/api/service-requests', {
-    //   method: 'POST',
-    //   body: JSON.stringify(values),
-    // });
+   
 
     form.reset();
 
@@ -64,27 +60,10 @@ const ServiceRequestForm = () => {
       },
     });
   };
-
-
-
-
-
   
 
   return (
-    // <section className="py-16 min-h-screen bg-gray-50 w-full flex items-center">
-    //   <div className="max-w-2xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-    //     {/* Header */}
-    //     <div className="text-center mb-12">
-    //       <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0D0F11] leading-tight">
-    //         Service <span className="text-[#F0A500]">Request Form</span>
-    //       </h2>
-
-    //       <p className="mt-4 text-[#0D0F11] mx-auto font-normal max-w-xl text-base leading-relaxed">
-    //         Tell us what you need, and we'll connect you with the perfect service
-    //         provider.
-    //       </p>
-    //     </div>
+   
 <section className="py-16 min-h-screen bg-gray-50  w-full flex items-center">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
@@ -96,19 +75,19 @@ const ServiceRequestForm = () => {
           </p>
         </div>
 
-        {/* Form */}
+
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
              className="space-y-8"
           >
-            {/* Personal Information Section */}
+   
             <div className="space-y-6">
               <h3 className="text-base font-semibold text-gray-900">
                 Personal Information
               </h3>
 
-              {/* Full Name */}
+        
               <FormField
                 control={form.control}
                 name="fullName"
@@ -129,7 +108,7 @@ const ServiceRequestForm = () => {
                 )}
               />
 
-              {/* Whatsapp Number & Email Address Row */}
+      
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
@@ -175,13 +154,12 @@ const ServiceRequestForm = () => {
               </div>
             </div>
 
-            {/* Service Details Section */}
+          
             <div className="space-y-6">
               <h3 className="text-base font-semibold text-gray-900">
                 Service Details
               </h3>
 
-              {/* Select Service */}
               <FormField
                 control={form.control}
                 name="selectService"
@@ -224,7 +202,7 @@ const ServiceRequestForm = () => {
                 )}
               />
 
-              {/* Service Address */}
+          
               <FormField
                 control={form.control}
                 name="serviceAddress"
@@ -248,7 +226,7 @@ const ServiceRequestForm = () => {
                 )}
               />
 
-              {/* Preferred Date & Time */}
+       
               <FormField
                 control={form.control}
                 name="preferredDateTime"
@@ -269,7 +247,7 @@ const ServiceRequestForm = () => {
                 )}
               />
 
-              {/* Additional Details (Optional) */}
+           
               <FormField
                 control={form.control}
                 name="additionalDetails"
@@ -282,7 +260,7 @@ const ServiceRequestForm = () => {
                       <Textarea
                         {...field}
                         placeholder="Tell us more about your specific needs, preferences or special instructions..."
-                        className="min-h-[100px] border-gray-300 placeholder:text-gray-400 text-sm resize-none"
+                        className="min-h-25 border-gray-300 placeholder:text-gray-400 text-sm resize-none"
                       />
                     </FormControl>
                     <FormMessage />
@@ -291,7 +269,7 @@ const ServiceRequestForm = () => {
               />
             </div>
 
-            {/* Submit Button */}
+         
             <Button
               type="submit"
               disabled={form.formState.isSubmitting}
@@ -304,7 +282,7 @@ const ServiceRequestForm = () => {
           </form>
         </Form>
 
-        {/* Footer Note */}
+     
         <p className="text-center mt-6 text-sm text-gray-900">
          By submitting, you agree to our Terms of Service and Privacy Policy
         </p>

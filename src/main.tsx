@@ -11,6 +11,7 @@ import ServiceRequestPage from "./pages/RequestServiceForm";
 import RequestSuccess from "./pages/RequestSuccess";
 import HowItWorks from "./pages/HowItWorks";
 import TrustAndSafety from "./pages/TrustAndSafety";
+import Waitlist from "./pages/waitlist";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "request/success", element: <RequestSuccess /> },
       { path: "/how-it-works", element: <HowItWorks /> },
       { path: "/trust-and-safety", element: <TrustAndSafety /> },
+      { path: "/waitlist", element: <Waitlist />}
 
 
     ],

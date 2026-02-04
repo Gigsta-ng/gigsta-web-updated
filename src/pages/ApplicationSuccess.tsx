@@ -14,7 +14,7 @@ const ApplicationSuccess = () => {
 
   // This prevents people from landing here directly without submitting
   useEffect(() => {
-    // This removes direct access to the page.
+    // This removes direct access to the pageeeeeeee.
     if (!state) navigate("/provider", { replace: true });
   }, [state, navigate]);
 

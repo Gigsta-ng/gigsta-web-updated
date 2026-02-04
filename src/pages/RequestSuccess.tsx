@@ -14,7 +14,7 @@ const { state } = useLocation() as { state: SuccessState | null };
 
 // This prevents people from landing here directly without submitting
 useEffect(() => {
-  // This removes direct access to the page.
+  // This removes direct access to the pageeeeee.
   if (!state) navigate("/request", { replace: true });
 }, [state, navigate]);
  const { fullName, service } = (state || {}) as { fullName?: string; service?: string };
