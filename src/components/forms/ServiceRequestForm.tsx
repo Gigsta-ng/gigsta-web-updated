@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -27,9 +28,19 @@ import {
   serviceRequestSchema,
   type ServiceRequestFormValues,
 } from "./schemas/serviceRequestSchema";
+import { SERVICES } from "@/constants/services";
+import { submitToGoogleSheet } from "@/lib/googleSheets";
 
 const ServiceRequestForm = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const [selectedService, setSelectedService] = useState<string>("");
+  const [selectedPricingGroup, setSelectedPricingGroup] = useState<string>("");
+
+  // Get prefilled values from URL params
+  const prefilledService = searchParams.get("service") || "";
+  const prefilledPricingGroup = searchParams.get("pricingGroup") || "";
+  const prefilledPackage = searchParams.get("package") || "";
 
   const form = useForm<ServiceRequestFormValues>({
     resolver: zodResolver(serviceRequestSchema),
@@ -37,7 +48,9 @@ const ServiceRequestForm = () => {
       fullName: "",
       whatsappNumber: "",
       emailAddress: "",
-      selectService: "",
+      selectService: prefilledService,
+      selectPricingGroup: prefilledPricingGroup,
+      selectPackage: prefilledPackage ? `${prefilledPricingGroup} - ${prefilledPackage}` : "",
       serviceAddress: "",
       preferredDateTime: "",
       additionalDetails: "",
@@ -45,20 +58,71 @@ const ServiceRequestForm = () => {
     mode: "onTouched",
   });
 
+  // Initialize state and form values from URL params
+  useEffect(() => {
+    if (prefilledService) {
+      setSelectedService(prefilledService);
+      form.setValue("selectService", prefilledService);
+    }
+    if (prefilledPricingGroup) {
+      setSelectedPricingGroup(prefilledPricingGroup);
+      form.setValue("selectPricingGroup", prefilledPricingGroup);
+    }
+    if (prefilledPackage && prefilledPricingGroup) {
+      form.setValue("selectPackage", `${prefilledPricingGroup} - ${prefilledPackage}`);
+    }
+  }, [prefilledService, prefilledPricingGroup, prefilledPackage, form]);
+
+  const currentService = selectedService || prefilledService;
+  const currentPricingGroup = selectedPricingGroup || prefilledPricingGroup;
+
+  const selectedServiceData = SERVICES.find(
+    (s) => s.id === currentService
+  );
+
+  const selectedGroupData = selectedServiceData?.pricingGroups.find(
+    (group) => group.title === currentPricingGroup
+  );
+
   const onSubmit = async (values: ServiceRequestFormValues) => {
-    console.log("Service request:", values);
+    try {
+      // Prepare data for Google Sheets
+      const sheetData = {
+        'Full Name': values.fullName,
+        'WhatsApp Number': values.whatsappNumber,
+        'Email Address': values.emailAddress,
+        'Service': values.selectService === 'cleaning' ? 'House Cleaning' : 'Home Cooking',
+        'Pricing Group': values.selectPricingGroup,
+        'Package': values.selectPackage,
+        'Service Address': values.serviceAddress,
+        'Preferred Date & Time': values.preferredDateTime,
+        'Additional Details': values.additionalDetails || '',
+      };
 
-   
+      // Submit to Google Sheets
+      await submitToGoogleSheet({
+        sheetName: 'Service Requests',
+        data: sheetData,
+      });
 
-    form.reset();
+      // Reset form
+      form.reset();
 
-    navigate("/request/success", {
-      replace: true,
-      state: {
-        fullName: values.fullName,
-        service: values.selectService,
-      },
-    });
+      // Navigate to success page
+      navigate("/request/success", {
+        replace: true,
+        state: {
+          fullName: values.fullName,
+          service: values.selectService,
+          pricingGroup: values.selectPricingGroup,
+          package: values.selectPackage,
+        },
+      });
+    } catch (error) {
+      console.error('Error submitting service request:', error);
+      // You can add error handling UI here, e.g., toast notification
+      alert('Failed to submit service request. Please try again or contact support.');
+    }
   };
   
 
@@ -169,7 +233,14 @@ const ServiceRequestForm = () => {
                       Select Service <span className="text-red-500">*</span>
                     </FormLabel>
                     <Select
-                      onValueChange={field.onChange}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                        setSelectedService(value);
+                        // Reset pricing group and package when service changes
+                        setSelectedPricingGroup("");
+                        form.setValue("selectPricingGroup", "");
+                        form.setValue("selectPackage", "");
+                      }}
                       value={field.value ?? ""}
                     >
                       <FormControl>
@@ -178,29 +249,94 @@ const ServiceRequestForm = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="house-cleaning">
+                        <SelectItem value="cleaning">
                           House Cleaning
                         </SelectItem>
-                        <SelectItem value="personal-chef">
-                          Personal Chef
+                        <SelectItem value="cooking">
+                          Home Cooking
                         </SelectItem>
-                        <SelectItem value="laundry-ironing">
-                          Laundry & Ironing
-                        </SelectItem>
-                        <SelectItem value="plumbing">Plumbing</SelectItem>
-                        <SelectItem value="electrical">
-                          Electrical Work
-                        </SelectItem>
-                        <SelectItem value="gardening">Gardening</SelectItem>
-                        <SelectItem value="painting">Painting</SelectItem>
-                        <SelectItem value="carpentry">Carpentry</SelectItem>
-                        <SelectItem value="others">Others</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
+              {selectedService && (
+                <FormField
+                  control={form.control}
+                  name="selectPricingGroup"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel className="text-sm font-normal text-gray-900">
+                        Select Pricing Option <span className="text-red-500">*</span>
+                      </FormLabel>
+                      <Select
+                        onValueChange={(value) => {
+                          field.onChange(value);
+                          setSelectedPricingGroup(value);
+                          // Reset package when pricing group changes
+                          form.setValue("selectPackage", "");
+                        }}
+                        value={field.value ?? ""}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="h-11 border-gray-300 text-sm">
+                            <SelectValue placeholder="Choose One-Time or Monthly/Weekly" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {selectedServiceData?.pricingGroups.map((group, groupIndex) => (
+                            <SelectItem
+                              key={groupIndex}
+                              value={group.title}
+                            >
+                              {group.title}
+                              {group.description && ` ${group.description}`}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+
+              {selectedService && selectedPricingGroup && (
+                <FormField
+                  control={form.control}
+                  name="selectPackage"
+                  render={({ field }) => (
+                    <FormItem className="space-y-2">
+                      <FormLabel className="text-sm font-normal text-gray-900">
+                        Select Package <span className="text-red-500">*</span>
+                      </FormLabel>
+                      <Select
+                        onValueChange={field.onChange}
+                        value={field.value ?? ""}
+                      >
+                        <FormControl>
+                          <SelectTrigger className="h-11 border-gray-300 text-sm">
+                            <SelectValue placeholder="Choose a package" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {selectedGroupData?.prices.map((price, priceIndex) => (
+                            <SelectItem
+                              key={priceIndex}
+                              value={`${selectedPricingGroup} - ${price.label}`}
+                            >
+                              {price.label} - {price.amount}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
 
           
               <FormField

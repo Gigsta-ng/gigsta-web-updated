@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); */
 
 body {
   font-family: 'Poppins', sans-serif;
@@ -10,4 +10,13 @@ body {
 ::selection {
   background-color: #F0A500; 
   color: #0D0F11; 
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #F0A500;
+  border-width: 1px;
+  box-shadow: 0 0 0 1px #F0A500;
 }

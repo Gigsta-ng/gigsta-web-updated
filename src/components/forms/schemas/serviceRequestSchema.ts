@@ -23,6 +23,14 @@ export const serviceRequestSchema = z.object({
     .string()
     .min(1, "Please select a service"),
 
+  selectPricingGroup: z
+    .string()
+    .min(1, "Please select a pricing option"),
+
+  selectPackage: z
+    .string()
+    .min(1, "Please select a package"),
+
   serviceAddress: z
     .string()
     .min(5, "Please enter a valid service address")
