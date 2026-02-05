@@ -1,103 +1,56 @@
 import { CheckCircleIcon } from "@/assets/icons/svg";
 import { Button } from "@/components/ui/button";
-import type { Service } from "@/types/service";
-// import { NavLink } from "react-router-dom";
+import type { PricingGroup } from "@/types/service";
 
 type Props = {
-  service: Service;
+  pricingGroup: PricingGroup;
 };
 
-const ServiceCard = ({ service }: Props) => {
-  const primary = service.pricingGroups?.[0];
-  const secondary = service.pricingGroups?.[1];
-
-  const primaryPreview = primary?.prices;
-  const secondaryPreview = secondary?.prices;
-
+const ServiceCard = ({ pricingGroup }: Props) => {
   return (
-    <div className="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col h-full">
-    
-        <div className="relative h-65 md:h-80 lg:h-85 rounded-2xl overflow-hidden shrink-0 group">
-          <img
-            src={service.heroImage}
-            alt={service.name}
-            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-          />
-       
-          <div className="absolute inset-0 bg-linear-to-t from-black/30 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        </div>
-    
-
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden flex flex-col h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       <div className="p-6 flex flex-col h-full">
-        <h3 className="text-lg font-semibold mb-1 text-[#0D0F11]">
-          {service.name}
-        </h3>
+        {/* Title with Check Icon */}
+        <div className="flex items-center gap-2 mb-3">
+          <CheckCircleIcon className="w-5 h-5 text-[#F0A500] shrink-0" />
+          <h3 className="text-xl font-bold text-[#0D0F11]">
+            {pricingGroup.title}
+          </h3>
+        </div>
 
-        <p className="text-sm text-gray-600 mb-6">
-          {service.shortDescription}
-        </p>
-
-        {primary && (
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-2">
-           
-              <CheckCircleIcon className="w-4 h-4 text-[#F0A500]" />
-              <p className="font-medium text-sm text-[#0D0F11] ">
-                {primary.title}
-              </p>
-            </div>
-
-            <div className="space-y-1 text-sm text-gray-700 mb-3">
-              {primaryPreview.map((p) => (
-                <p key={p.label} className="mb-3">
-                  {p.label}: <span className="font-medium">{p.amount}</span>
-                </p>
-              ))}
-            </div>
-
-            <ul className="text-xs text-gray-500 list-none space-y-1">
-              {service.includes.map((item) => (
-                <li key={item}>{item} </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      <div className="border-t border-gray-200 mb-6"></div>
-        {secondary && (
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-2">
-              <CheckCircleIcon className="w-4 h-4 text-[#F0A500]" />
-              <p className="font-medium text-sm text-[#0D0F11]">
-                {secondary.title}
-              </p>
-            </div>
-
-            {secondary.description && (
-              <p className="text-xs text-gray-500 mb-2">
-                {secondary.description}
-              </p>
-            )}
-
-            <div className="space-y-1 text-sm text-gray-700">
-              {secondaryPreview.map((p) => (
-                <p key={p.label} className="mb-3">
-                  {p.label}: <span className="font-medium">{p.amount}</span>
-                </p>
-              ))}
-            </div>
-
-            {secondary.note && (
-              <p className="mt-2 text-xs italic text-gray-500">
-                Note: {secondary.note}
-              </p>
-            )}
-          </div>
+        {/* Description */}
+        {pricingGroup.description && (
+          <p className="text-sm text-gray-600 mb-6">
+            {pricingGroup.description}
+          </p>
         )}
 
-          <Button className="w-full bg-[#F0A500] hover:bg-[#d89400] text-white font-semibold mt-auto cursor-pointer">
-            Book Now →
-          </Button>
+        {/* Pricing Breakdown */}
+        <div className="space-y-4 mb-6 grow">
+          {pricingGroup.prices.map((price, index) => (
+            <div
+              key={index}
+              className="border border-gray-200 rounded-lg p-4 hover:border-[#F0A500] transition-all duration-300"
+            >
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-sm font-medium text-gray-700">{price.label}</span>
+                <span className="font-bold text-[#0D0F11] text-lg">
+                  {price.amount}
+                </span>
+              </div>
+              <Button className="w-full bg-[#F0A500] hover:bg-[#d89400] text-white font-semibold py-3 text-sm cursor-pointer transition-all duration-300 hover:shadow-md">
+                Book Now →
+              </Button>
+            </div>
+          ))}
+        </div>
 
+        {/* Note */}
+        {pricingGroup.note && (
+          <p className="text-xs italic text-gray-500 mb-6 bg-gray-50 p-3 rounded-md">
+            <span className="font-medium">Note:</span> {pricingGroup.note}
+          </p>
+        )}
       </div>
     </div>
   );

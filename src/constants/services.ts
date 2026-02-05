@@ -8,8 +8,7 @@ export const SERVICES: Service[] = [
     name: "Home Cleaning Services",
     heroImage: cleaningImg,
     shortDescription: "One-time or monthly cleaning in Uyo",
-    description:
-      "Professional, on-demand home cleaning services delivered by vetted local providers in Uyo.",
+    description: "",
 
     includes: [
       "Sweeping and mopping floors",
@@ -51,8 +50,7 @@ export const SERVICES: Service[] = [
     name: "Home Cooking Services",
     heroImage: cookingImg,
     shortDescription: "Reliable home cooking — one-time or scheduled",
-    description:
-      "Reliable home cooking by trusted local cooks, one-time or scheduled.",
+    description: "",
 
     includes: [
       "Basic meal preparation",
