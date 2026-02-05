@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
 import { MoveRight } from "lucide-react";
 
@@ -41,12 +42,13 @@ const HeroSection = () => {
         </div>
 
         <div className="flex flex-col mt-10 gap-4 w-full sm:flex-row sm:items-center sm:w-auto">
-          <Button className="w-full sm:w-auto bg-[#F0A500] hover:bg-yellow-600 text-white font-semibold text-base py-5 px-6 rounded-lg cursor-pointer ">
-            Request a Service <MoveRight className="h-4 w-4 " /> 
+          <Button className="w-full sm:w-auto bg-[#F0A500] hover:bg-yellow-600 text-white font-semibold text-base py-5 px-6 rounded-lg cursor-pointer "> 
+
+             <NavLink to="/request-service"> <div className="flex gap-1 items-center">  Request a Service <MoveRight className="h-4 w-4 " /> </div></NavLink> 
           </Button>
 
           <Button className="w-full sm:w-auto bg-white hover:bg-gray-100  text-black font-semibold text-base py-5 px-6 rounded-lg transition-colors cursor-pointer">
-            Get Job Leads
+           <NavLink to="/provider">Get Job Leads</NavLink> 
           </Button>
         </div>
       </div>

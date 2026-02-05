@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
@@ -36,15 +36,15 @@ const form = useForm<ProviderFormValues>({
      fullName: "",
     whatsappNumber: "",
     emailAddress: "",
-    gender: "",                 // ✅
+    gender: "",                 
     dateOfBirth: "",
     location: "",
-    primaryService: "",         // ✅
-    yearsOfExperience: "",      // ✅
+    primaryService: "",         
+    yearsOfExperience: "",      
     operateLocation: "",
-    availability: "",           // ✅
-    availabilityTime: "",       // ✅
-    howDoYouCharge: "",         // ✅
+    availability: "",           
+    availabilityTime: "",       
+    howDoYouCharge: "",         
     averageCharge: "",
     additionalDetails: "",
     terms: false,        

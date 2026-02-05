@@ -11,8 +11,8 @@ const ServiceCard = ({ service }: Props) => {
   const primary = service.pricingGroups?.[0];
   const secondary = service.pricingGroups?.[1];
 
-  const primaryPreview = primary?.prices?.slice(0, 4) ?? [];
-  const secondaryPreview = secondary?.prices?.slice(0, 4) ?? [];
+  const primaryPreview = primary?.prices;
+  const secondaryPreview = secondary?.prices;
 
   return (
     <div className="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col h-full">
@@ -56,7 +56,7 @@ const ServiceCard = ({ service }: Props) => {
             </div>
 
             <ul className="text-xs text-gray-500 list-none space-y-1">
-              {service.includes.slice(0, 6).map((item) => (
+              {service.includes.map((item) => (
                 <li key={item}>{item} </li>
               ))}
             </ul>

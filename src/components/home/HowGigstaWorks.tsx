@@ -62,8 +62,9 @@ const HowGigstaWorks = () => {
  
  
 
-  <div className="text-center mt-8">
-          <Button className="shadow-[0_4px_4px_4px_rgba(0,0,0,0.15)] cursor-pointer  bg-[#F0A500] inline-flex items-center gap-2 text-white font-semibold text-base hover:gap-3 transition-all duration-300">
+  <div className="text-center mt-8 md:mt-12">
+          <Button className="shadow-[0_4px_4px_4px_rgba(0,0,0,0.15)] cursor-pointer inline-flex items-center gap-2 font-semibold text-base bg-[#0D0F11] text-white 
+ hover:gap-3 transition-all duration-300">
              <NavLink to="/services" >
              <div className="flex gap-1 items-center"> Request a Service  <MoveRight className="h-4 w-4" /></div>
                

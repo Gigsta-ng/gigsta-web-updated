@@ -28,11 +28,6 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#" className="hover:text-[#F0A500]">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
                   Contact Us
                 </a>
               </li>

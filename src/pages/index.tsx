@@ -1,5 +1,3 @@
-// Page components
-// import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/home/HeroSection";
 import WhatGigstaDoes from "@/components/home/WhatGigstaDoes";
 import Services from "@/components/home/Services";
@@ -11,7 +9,6 @@ import Footer from "@/components/layout/Footer";
 const HomePage = () => {
   return (
     <>
-      {/* <Navbar /> */}
       <HeroSection />
       <WhatGigstaDoes />
       <Services />

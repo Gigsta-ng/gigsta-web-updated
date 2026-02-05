@@ -8,6 +8,6 @@ body {
 }
 
 ::selection {
-  background-color: #F0A500; /* your brand yellow */
-  color: #0D0F11; /* text color when highlighted */
+  background-color: #F0A500; 
+  color: #0D0F11; 
 }

@@ -1,4 +1,7 @@
 import { useRef } from "react";
+import { NavLink } from "react-router-dom";
+import { Button } from "../ui/button";
+import { MoveRight } from "lucide-react";
 import type { Swiper as SwiperType } from "swiper";
 import { Apostrophe } from "@/assets/icons/svg";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -25,35 +28,35 @@ const testimonials: TestimonialType[] = [
   {
     id: 2,
     name: "Nora Bisong",
-    image: "/images/testimonial1.jpg",
+    image: "/images/testimonial4.jpg",
     stars: 4,
     text: "Very professional service. I’ll definitely use it again.",
   },
   {
     id: 3,
     name: "Ebube Anyanwu",
-    image: "/images/testimonial1.jpg",
+    image: "/images/testimonial3.jpg",
     stars: 5,
     text: "Quick and reliable. Loved the experience!",
   },
   {
     id: 4,
     name: "Emmanuel Effiong",
-    image: "/images/testimonial1.jpg",
+    image: "/images/testimonial2.jpg",
     stars: 5,
     text: "The best platform for finding skilled professionals.",
   },
   {
     id: 5,
     name: "Abasiama Okon",
-    image: "/images/testimonial1.jpg",
+    image: "/images/testimonial5.jpg",
     stars: 4,
     text: "Everything went smoothly. Great communication!",
   },
   {
     id: 6,
     name: "Ita Enang",
-    image: "/images/testimonial1.jpg",
+    image: "/images/testimonial6.jpg",
     stars: 5,
     text: "Highly efficient and easy to use. Loved it!",
   },
@@ -169,6 +172,16 @@ const Testimonial = () => {
           animation: fadeIn 0.2s forwards;
         }
       `}</style>
+
+         <div className="text-center mt-8 md:mt-12">
+                  <Button className="shadow-[0_4px_4px_4px_rgba(0,0,0,0.15)] cursor-pointer  bg-[#F0A500] inline-flex items-center gap-2 text-white font-semibold text-base hover:gap-3 transition-all duration-300">
+                     <NavLink to="/services" >
+                     <div className="flex gap-1 items-center"> Request a Service  <MoveRight className="h-4 w-4" /></div>
+                       
+                    </NavLink> 
+                  
+                  </Button>
+                </div>
       </div>
     </section>
   );

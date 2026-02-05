@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const requiredSelect = (message: string) =>
-  z.string().min(1, message); // ✅ disallows ""
+  z.string().min(1, message); 
 
 
 export const providerSchema = z.object({
@@ -14,7 +14,7 @@ export const providerSchema = z.object({
 
   emailAddress: z.string().email("Enter a valid email address"),
 
-  // ✅ allow empty at first, validate required with min(1)
+
   gender: requiredSelect("Please select a gender").refine(
     (v) => ["female", "male", "other"].includes(v),
     "Please select a valid gender"
