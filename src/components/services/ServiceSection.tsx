@@ -31,23 +31,23 @@ const ServiceSection = () => {
           <p className="text-lg font-medium text-[#0D0F11] mb-4">
             What service are you looking for?
           </p>
-          <div className="inline-flex bg-white rounded-lg p-1 shadow-sm border border-gray-200">
+          <div className="inline-flex items-center bg-white rounded-full p-1 shadow-sm">
             <button
               onClick={() => handleTabChange("cleaning")}
-              className={`px-4 lg:px-8 py-3 rounded-md font-semibold text-sm lg:text-base transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeTab === "cleaning"
-                  ? "bg-[#F0A500] text-white shadow-md"
-                  : "text-gray-700 hover:text-[#F0A500]"
+                  ? "bg-[#F0A500] text-[#0D0F11]"
+                  : "bg-transparent text-gray-600 hover:text-[#0D0F11]"
               }`}
             >
               House Cleaning
             </button>
             <button
               onClick={() => handleTabChange("cooking")}
-              className={`px-4 lg:px-8 py-3 rounded-md font-semibold text-sm lg:text-base transition-all duration-300 ${
+              className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
                 activeTab === "cooking"
-                  ? "bg-[#F0A500] text-white shadow-md"
-                  : "text-gray-700 hover:text-[#F0A500]"
+                  ? "bg-[#F0A500] text-[#0D0F11]"
+                  : "bg-transparent text-gray-600 hover:text-[#0D0F11]"
               }`}
             >
               Home Cooking

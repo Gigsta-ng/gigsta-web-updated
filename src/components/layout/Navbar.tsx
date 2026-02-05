@@ -29,11 +29,13 @@ const Navbar = () => {
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center">
     
     <div className="flex justify-between items-center w-full">
-      <img
-        src="/images/logo.svg"
-        alt="Gigsta logo"
-        className="h-14 w-auto "
-      />
+      <NavLink to="/">
+        <img
+          src="/images/logo.svg"
+          alt="Gigsta logo"
+          className="h-14 w-auto cursor-pointer"
+        />
+      </NavLink>
 
       <ul className="hidden md:flex items-center gap-10 font-medium">
           <li className="hover:text-[#F0A500]">
