@@ -38,7 +38,7 @@ const Services = () => {
                 <h3 className="text-xl font-semibold mb-2">Cleaning</h3>
 
                 <p className="text-sm text-white/90 max-w-xs">
-                  Trusted cleaners for one time or recurring home cleaning.
+                  Trusted cleaners for one time or recurring House Cleaning.
                 </p>
 
                 <div className="mt-2 inline-flex items-center gap-2 text-white text-base font-semibold hover:text-[#F0A500]">

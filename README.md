@@ -4,7 +4,7 @@ Gigsta is building Nigeria's first on-demand home services platform, launching i
 
 ## Project Overview
 
-**Vision**: Connect busy professionals with vetted, reliable service providers for home cleaning, laundry, and errands.
+**Vision**: Connect busy professionals with vetted, reliable service providers for House Cleaning, laundry, and errands.
 
 **Current Phase**: Concierge MVP - Manual operations using WhatsApp and Google Sheets while we validate the market and build our mobile apps (launching Q2 2026).
 

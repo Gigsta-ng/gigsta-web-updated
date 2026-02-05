@@ -5,7 +5,7 @@ import cookingImg from "@/assets/images/image3.jpg";
 export const SERVICES: Service[] = [
   {
     id: "cleaning",
-    name: "Home Cleaning Services",
+    name: "House Cleaning Services",
     heroImage: cleaningImg,
     shortDescription: "One-time or monthly cleaning in Uyo",
     description: "",

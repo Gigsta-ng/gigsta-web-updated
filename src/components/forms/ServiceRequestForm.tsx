@@ -69,7 +69,8 @@ const ServiceRequestForm = () => {
       form.setValue("selectPricingGroup", prefilledPricingGroup);
     }
     if (prefilledPackage && prefilledPricingGroup) {
-      form.setValue("selectPackage", `${prefilledPricingGroup} - ${prefilledPackage}`);
+      const packageValue = `${prefilledPricingGroup} - ${prefilledPackage}`;
+      form.setValue("selectPackage", packageValue);
     }
   }, [prefilledService, prefilledPricingGroup, prefilledPackage, form]);
 
@@ -262,7 +263,7 @@ const ServiceRequestForm = () => {
                 )}
               />
 
-              {selectedService && (
+              {currentService && (
                 <FormField
                   control={form.control}
                   name="selectPricingGroup"
@@ -303,7 +304,7 @@ const ServiceRequestForm = () => {
                 />
               )}
 
-              {selectedService && selectedPricingGroup && (
+              {currentService && currentPricingGroup && (
                 <FormField
                   control={form.control}
                   name="selectPackage"

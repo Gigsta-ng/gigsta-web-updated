@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 // import Footer from "@/components/layout/Footer";
 import FooterBottom from "./components/layout/FooterBottom";
 import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 import { Outlet } from "react-router-dom";
 
 const App = () => {
@@ -13,6 +14,10 @@ const App = () => {
         <Outlet />
       </main>
       <FooterBottom />
+      <WhatsAppWidget 
+        phoneNumber="2347044413998"
+        message="Hello! I'm interested in Gigsta services."
+      />
     </>
   );
 };

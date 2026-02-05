@@ -34,17 +34,17 @@ const ServiceSection = () => {
           <div className="inline-flex bg-white rounded-lg p-1 shadow-sm border border-gray-200">
             <button
               onClick={() => handleTabChange("cleaning")}
-              className={`px-8 py-3 rounded-md font-semibold text-base transition-all duration-300 ${
+              className={`px-4 lg:px-8 py-3 rounded-md font-semibold text-sm lg:text-base transition-all duration-300 ${
                 activeTab === "cleaning"
                   ? "bg-[#F0A500] text-white shadow-md"
                   : "text-gray-700 hover:text-[#F0A500]"
               }`}
             >
-              Home Cleaning
+              House Cleaning
             </button>
             <button
               onClick={() => handleTabChange("cooking")}
-              className={`px-8 py-3 rounded-md font-semibold text-base transition-all duration-300 ${
+              className={`px-4 lg:px-8 py-3 rounded-md font-semibold text-sm lg:text-base transition-all duration-300 ${
                 activeTab === "cooking"
                   ? "bg-[#F0A500] text-white shadow-md"
                   : "text-gray-700 hover:text-[#F0A500]"
@@ -72,7 +72,7 @@ const ServiceSection = () => {
                 <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-                    {activeTab === "cleaning" ? "Home Cleaning" : "Home Cooking"}
+                    {activeTab === "cleaning" ? "House Cleaning" : "Home Cooking"}
                   </h3>
                   <p className="text-base md:text-lg text-white/90 font-medium">
                     Select from our variety of packages below to book your service
@@ -92,7 +92,7 @@ const ServiceSection = () => {
 
             {/* What's Included Section */}
             <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-12">
-              <h3 className="text-2xl font-bold text-[#0D0F11] mb-6">
+              <h3 className="text-xl lg:text-2xl font-bold text-[#0D0F11] mb-6">
                 What's Included
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -101,8 +101,8 @@ const ServiceSection = () => {
                     key={index}
                     className="flex items-start gap-3 text-gray-700"
                   >
-                    <CheckCircleIcon className="w-5 h-5 text-[#F0A500] mt-0.5 shrink-0" />
-                    <span className="text-base">{item}</span>
+                    <CheckCircleIcon className="w-3 h-3 lg:w-5 lg:h-5 text-[#F0A500] mt-0.5 shrink-0" />
+                    <span className="text-sm lg:text-base">{item}</span>
                   </div>
                 ))}
               </div>
@@ -114,7 +114,7 @@ const ServiceSection = () => {
                 <div key={groupIndex} className="space-y-6">
                   {/* Pricing Group Header */}
                   <div>
-                    <h3 className="text-2xl font-bold text-[#0D0F11]">
+                    <h3 className="text-xl lg:text-2xl font-bold text-[#0D0F11]">
                       {pricingGroup.title}
                     </h3>
                     {pricingGroup.description && (
@@ -129,7 +129,7 @@ const ServiceSection = () => {
                     {pricingGroup.prices.map((price, priceIndex) => (
                       <NavLink
                         key={priceIndex}
-                        to="/request-service"
+                        to={`/request-service?service=${activeService.id}&pricingGroup=${encodeURIComponent(pricingGroup.title)}&package=${encodeURIComponent(price.label)}`}
                         className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col hover:bg-[#F0A500] hover:shadow-md hover:border-[#F0A500] transition-all duration-300 cursor-pointer group"
                       >
                         <div className="mb-4">
