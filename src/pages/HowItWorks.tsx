@@ -132,7 +132,7 @@ const HowGigstaWorks = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="text-center py-32">
           <h3 className="text-3xl sm:text-4xl font-bold text-[#0D0F11] mb-4">
             {currentHeading}
           </h3>

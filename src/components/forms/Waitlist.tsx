@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { submitToGoogleSheet } from "@/lib/googleSheets";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
@@ -47,10 +48,25 @@ const Waitlist = () => {
 
     setIsSubmitting(true);
     try {
+      // Prepare data for Google Sheets
+      const sheetData = {
+        'Full Name': fullName.trim(),
+        'Email Address': email.trim(),
+      };
+
+      // Submit to Google Sheets
+      await submitToGoogleSheet({
+        sheetName: 'Waitlist',
+        data: sheetData,
+      });
+
       setOpen(true);
       setFullName("");
       setEmail("");
       setErrors({});
+    } catch (error) {
+      console.error('Error submitting to waitlist:', error);
+      alert('Failed to join waitlist. Please try again or contact support.');
     } finally {
       setIsSubmitting(false);
     }

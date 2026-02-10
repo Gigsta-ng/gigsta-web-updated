@@ -42,6 +42,23 @@ const ServiceRequestForm = () => {
   const prefilledPricingGroup = searchParams.get("pricingGroup") || "";
   const prefilledPackage = searchParams.get("package") || "";
 
+  // Compute initial package value with amount if all required params are present
+  const getInitialPackageValue = () => {
+    if (prefilledPackage && prefilledPricingGroup && prefilledService) {
+      const selectedServiceData = SERVICES.find((s) => s.id === prefilledService);
+      const selectedGroupData = selectedServiceData?.pricingGroups.find(
+        (group) => group.title === prefilledPricingGroup
+      );
+      const selectedPrice = selectedGroupData?.prices.find(
+        (price) => price.label === prefilledPackage
+      );
+      if (selectedPrice) {
+        return `${prefilledPackage} - ${selectedPrice.amount}`;
+      }
+    }
+    return "";
+  };
+
   const form = useForm<ServiceRequestFormValues>({
     resolver: zodResolver(serviceRequestSchema),
     defaultValues: {
@@ -50,7 +67,7 @@ const ServiceRequestForm = () => {
       emailAddress: "",
       selectService: prefilledService,
       selectPricingGroup: prefilledPricingGroup,
-      selectPackage: prefilledPackage ? `${prefilledPricingGroup} - ${prefilledPackage}` : "",
+      selectPackage: getInitialPackageValue(),
       serviceAddress: "",
       preferredDateTime: "",
       additionalDetails: "",
@@ -69,8 +86,21 @@ const ServiceRequestForm = () => {
       form.setValue("selectPricingGroup", prefilledPricingGroup);
     }
     if (prefilledPackage && prefilledPricingGroup) {
-      const packageValue = `${prefilledPricingGroup} - ${prefilledPackage}`;
-      form.setValue("selectPackage", packageValue);
+      // Find the price amount for the prefilled package
+      const selectedServiceForPrefill = SERVICES.find(
+        (s) => s.id === prefilledService
+      );
+      const selectedGroupForPrefill = selectedServiceForPrefill?.pricingGroups.find(
+        (group) => group.title === prefilledPricingGroup
+      );
+      const selectedPrice = selectedGroupForPrefill?.prices.find(
+        (price) => price.label === prefilledPackage
+      );
+      
+      if (selectedPrice) {
+        const packageValue = `${prefilledPackage} - ${selectedPrice.amount}`;
+        form.setValue("selectPackage", packageValue);
+      }
     }
   }, [prefilledService, prefilledPricingGroup, prefilledPackage, form]);
 
@@ -293,7 +323,6 @@ const ServiceRequestForm = () => {
                               value={group.title}
                             >
                               {group.title}
-                              {group.description && ` ${group.description}`}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -326,7 +355,7 @@ const ServiceRequestForm = () => {
                           {selectedGroupData?.prices.map((price, priceIndex) => (
                             <SelectItem
                               key={priceIndex}
-                              value={`${selectedPricingGroup} - ${price.label}`}
+                              value={`${price.label} - ${price.amount}`}
                             >
                               {price.label} - {price.amount}
                             </SelectItem>

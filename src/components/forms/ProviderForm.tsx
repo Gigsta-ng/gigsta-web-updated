@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/form";
 
 import { providerSchema, type ProviderFormValues } from "./schemas/providerSchema";
+import { submitToGoogleSheet } from "@/lib/googleSheets";
 
 const ProviderForm = () => {
 const navigate = useNavigate();
@@ -52,18 +53,44 @@ const form = useForm<ProviderFormValues>({
   mode: "onTouched",
 });
   const onSubmit = async (values: ProviderFormValues) => {
+    try {
+      // Prepare data for Google Sheets
+      const sheetData = {
+        'Full Name': values.fullName,
+        'WhatsApp Number': values.whatsappNumber,
+        'Email Address': values.emailAddress,
+        'Gender': values.gender,
+        'Date of Birth': values.dateOfBirth,
+        'Location': values.location,
+        'Primary Service': values.primaryService,
+        'Years of Experience': values.yearsOfExperience,
+        'Operate Location': values.operateLocation,
+        'Availability': values.availability,
+        'Availability Time': values.availabilityTime,
+        'How Do You Charge': values.howDoYouCharge,
+        'Average Charge': values.averageCharge,
+        'Additional Details': values.additionalDetails,
+      };
 
-    console.log("Provider application:", values);
+      // Submit to Google Sheets
+      await submitToGoogleSheet({
+        sheetName: 'Provider Applications',
+        data: sheetData,
+      });
 
-    form.reset();
+      form.reset();
 
-    navigate("/provider/success", {
-    replace: true,
-    state: {
-      fullName: values.fullName,
-      primaryService: values.primaryService,
-    },
-  });
+      navigate("/provider/success", {
+        replace: true,
+        state: {
+          fullName: values.fullName,
+          primaryService: values.primaryService,
+        },
+      });
+    } catch (error) {
+      console.error('Error submitting provider application:', error);
+      alert('Failed to submit application. Please try again or contact support.');
+    }
   };
 
   return (
