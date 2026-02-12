@@ -1,13 +1,20 @@
-
 import Services from "@/components/services/ServiceSection";
 import Waitlist from "@/components/services/Waitlist";
+import SEO from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
+
 const ServicesPage = () => {
   return (
     <>
-
+      <SEO 
+        title="Our Services - House Cleaning & Home Cooking in Uyo"
+        description="Choose from our professional home services in Uyo: one-time or recurring house cleaning, home cooking, and more. Transparent pricing, verified providers."
+        url="https://gigsta.ng/services"
+        keywords="house cleaning services Uyo, home cooking Uyo, cleaning packages Uyo, professional cleaners Uyo, home services pricing"
+      />
+      <StructuredData type="Service" />
       <Services />
       <Waitlist />
-   
     </>
   );
 };

@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { MoveRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import SEO from "@/components/SEO";
 
 const HowGigstaWorks = () => {
   const [activeTab, setActiveTab] = useState<"clients" | "providers">("clients");
@@ -77,7 +78,14 @@ const HowGigstaWorks = () => {
   
 
   return (
-    <section className="min-h-screen w-full bg-gray-50 flex items-center py-20 md:py-20">
+    <>
+      <SEO 
+        title="How Gigsta Works - Simple Steps to Get Started"
+        description="Learn how Gigsta works for clients and providers. Simple 3-step process: post tasks, get matched, job gets done. Join thousands of satisfied customers in Uyo."
+        url="https://gigsta.ng/how-it-works"
+        keywords="how gigsta works, book home services Uyo, become service provider Uyo, gigsta process"
+      />
+      <section className="min-h-screen w-full bg-gray-50 flex items-center py-20 md:py-20">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl md:text-[50px] font-bold leading-[1.2] text-[#0D0F11]">
@@ -150,6 +158,7 @@ const HowGigstaWorks = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

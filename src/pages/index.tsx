@@ -5,10 +5,21 @@ import HowGigstaWorks from "@/components/home/HowGigstaWorks";
 import Testimonial from "@/components/home/Testimonial";
 import Faqs from "@/components/home/Faqs";
 import Footer from "@/components/layout/Footer";
+import SEO from "@/components/SEO";
+import StructuredData from "@/components/StructuredData";
 
 const HomePage = () => {
   return (
     <>
+      <SEO 
+        title="Gigsta - On-Demand Home Services in Uyo, Nigeria"
+        description="Book trusted, vetted home service providers in Uyo. Professional house cleaning, home cooking, and more. Verified, insured providers. Book now!"
+        url="https://gigsta.ng/"
+        keywords="home services Uyo, house cleaning Uyo, home cooking Uyo, cleaning services Nigeria, on-demand services Uyo, professional cleaners Uyo, home services Akwa Ibom"
+      />
+      <StructuredData type="Organization" />
+      <StructuredData type="LocalBusiness" />
+      <StructuredData type="WebSite" />
       <HeroSection />
       <WhatGigstaDoes />
       <Services />

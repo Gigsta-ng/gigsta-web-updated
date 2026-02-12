@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /request/success
+Disallow: /provider/success
+
+Sitemap: https://gigsta.ng/sitemap.xml
