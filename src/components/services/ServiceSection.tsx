@@ -100,7 +100,7 @@ const ServiceSection = () => {
                   <div
                     key={index}
                     className="flex items-start gap-3 text-gray-700"
-                  >
+            >
                     <CheckCircleIcon className="w-3 h-3 lg:w-5 lg:h-5 text-[#F0A500] mt-0.5 shrink-0" />
                     <span className="text-sm lg:text-base">{item}</span>
                   </div>
@@ -146,8 +146,8 @@ const ServiceSection = () => {
                           </span>
                         </div>
                       </NavLink>
-                    ))}
-                  </div>
+          ))}
+        </div>
 
                   {/* Note */}
                   {pricingGroup.note && (

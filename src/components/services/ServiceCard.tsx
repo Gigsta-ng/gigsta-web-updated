@@ -15,15 +15,15 @@ const ServiceCard = ({ pricingGroup }: Props) => {
           <CheckCircleIcon className="w-5 h-5 text-[#F0A500] shrink-0" />
           <h3 className="text-xl font-bold text-[#0D0F11]">
             {pricingGroup.title}
-          </h3>
-        </div>
+        </h3>
+            </div>
 
         {/* Description */}
-        {pricingGroup.description && (
+            {pricingGroup.description && (
           <p className="text-sm text-gray-600 mb-6">
-            {pricingGroup.description}
-          </p>
-        )}
+                {pricingGroup.description}
+              </p>
+            )}
 
         {/* Pricing Breakdown */}
         <div className="space-y-4 mb-6 grow">
@@ -42,11 +42,11 @@ const ServiceCard = ({ pricingGroup }: Props) => {
                 Book Now →
               </Button>
             </div>
-          ))}
-        </div>
+              ))}
+            </div>
 
         {/* Note */}
-        {pricingGroup.note && (
+            {pricingGroup.note && (
           <p className="text-xs italic text-gray-500 mb-6 bg-gray-50 p-3 rounded-md">
             <span className="font-medium">Note:</span> {pricingGroup.note}
           </p>
