@@ -1,4 +1,5 @@
-import { ReactNode, useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 
 type AnimationType = 
   | 'fadeIn'
@@ -18,8 +19,6 @@ interface AnimatedSectionProps {
   rootMargin?: string;
   triggerOnce?: boolean;
   className?: string;
-  stagger?: boolean;
-  staggerDelay?: number;
 }
 
 export const AnimatedSection = ({
@@ -30,8 +29,6 @@ export const AnimatedSection = ({
   rootMargin = '0px',
   triggerOnce = true,
   className = '',
-  stagger = false,
-  staggerDelay = 100,
 }: AnimatedSectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
