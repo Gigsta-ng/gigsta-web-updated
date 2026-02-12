@@ -12,8 +12,8 @@ interface SEOProps {
 const SEO = ({ 
   title = "Gigsta - On-Demand Home Services in Uyo, Nigeria",
   description = "Book trusted, vetted home service providers in Uyo. Professional house cleaning, home cooking, and more. Verified, insured providers.",
-  image = "https://gigsta.ng/og-image.jpg",
-  url = "https://gigsta.ng",
+  image = "https://gigsta.vercel.app/og-image.jpg",
+  url = "https://gigsta.vercel.app",
   type = "website",
   keywords
 }: SEOProps) => {
