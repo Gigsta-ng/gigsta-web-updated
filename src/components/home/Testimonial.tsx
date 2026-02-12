@@ -35,7 +35,7 @@ const testimonials: TestimonialType[] = [
   },
   {
     id: 3,
-    name: "Ebube Anyanwu",
+    name: "Mfon Udoh",
     image: "/images/testimonial3.jpg",
     stars: 5,
     text: "Quick and reliable. Loved the experience!",
