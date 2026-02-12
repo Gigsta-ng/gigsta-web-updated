@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AnimatedSection, AnimatedChild } from "../AnimatedSection";
 
 const faqs = [
   {
@@ -42,9 +43,11 @@ const Faqs = () => {
   return (
     <section className="py-20 bg-[#F0A500] min-h-screen w-full flex items-center">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-        <h2 className="text-center text-3xl sm:text-4xl md:text-5xl mb-14 font-bold leading-[1.2] text-[#0D0F11]">
-          Frequently Asked Questions
-        </h2>
+        <AnimatedSection animationType="slideDown" delay={100}>
+          <h2 className="text-center text-3xl sm:text-4xl md:text-5xl mb-14 font-bold leading-[1.2] text-[#0D0F11]">
+            Frequently Asked Questions
+          </h2>
+        </AnimatedSection>
 
         <Accordion
           type="single"
@@ -52,20 +55,21 @@ const Faqs = () => {
           defaultValue="faq-2"
           className="space-y-4"
         >
-          {faqs.map((faq) => (
-            <AccordionItem
-              key={faq.id}
-              value={faq.id}
-              className="border-none bg-white/40 rounded-xl px-6 py-1"
-            >
-              <AccordionTrigger className="text-left font-semibold text-[#0D0F11] text-base sm:text-lg hover:no-underline py-4">
-                {faq.question}
-              </AccordionTrigger>
+          {faqs.map((faq, index) => (
+            <AnimatedChild key={faq.id} animationType="fadeIn" index={index} delay={200}>
+              <AccordionItem
+                value={faq.id}
+                className="border-none bg-white/40 rounded-xl px-6 py-1"
+              >
+                <AccordionTrigger className="text-left font-semibold text-[#0D0F11] text-base sm:text-lg hover:no-underline py-4">
+                  {faq.question}
+                </AccordionTrigger>
 
-              <AccordionContent className="text-[#0D0F11]/80 text-sm sm:text-base leading-relaxed pb-5">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
+                <AccordionContent className="text-[#0D0F11]/80 text-sm sm:text-base leading-relaxed pb-5">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            </AnimatedChild>
           ))}
         </Accordion>
       </div>

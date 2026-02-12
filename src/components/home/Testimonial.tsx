@@ -8,6 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { AnimatedSection } from "../AnimatedSection";
 
 interface TestimonialType {
   id: number;
@@ -67,21 +68,23 @@ const Testimonial = () => {
   return (
     <section className="py-20 md:py-20 bg-gray-50 min-h-screen w-full flex items-center">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <div className="inline-block bg-[#F0A500]/12 px-6 py-3 rounded-4xl mx-auto mb-6">
-            <h3 className="text-2xl font-medium text-[#F0A500] tracking-wide">
-              TESTIMONIALS
-            </h3>
-          </div>
-          <h2 className="text-4xl sm:text-5xl  md:text-[50px] font-bold text-[#0D0F11]  leading-[1.2] ">
-            Our Happy Clients
-          </h2>
+        <AnimatedSection animationType="slideDown" delay={100}>
+          <div className="text-center mb-14">
+            <div className="inline-block bg-[#F0A500]/12 px-6 py-3 rounded-4xl mx-auto mb-6">
+              <h3 className="text-2xl font-medium text-[#F0A500] tracking-wide">
+                TESTIMONIALS
+              </h3>
+            </div>
+            <h2 className="text-4xl sm:text-5xl  md:text-[50px] font-bold text-[#0D0F11]  leading-[1.2] ">
+              Our Happy Clients
+            </h2>
 
-          <p className="mt-4.5 text-[#0D0F11]  mx-auto font-medium max-w-2xl text-lg md:text-xl leading-relaxed">
-            We value our clients and take pride in delivering exceptional
-            services. Here’s what they have to say about working with us.
-          </p>
-        </div>
+            <p className="mt-4.5 text-[#0D0F11]  mx-auto font-medium max-w-2xl text-lg md:text-xl leading-relaxed">
+              We value our clients and take pride in delivering exceptional
+              services. Here's what they have to say about working with us.
+            </p>
+          </div>
+        </AnimatedSection>
         <div className="relative">
           <Swiper
             modules={[Autoplay]}
@@ -173,15 +176,15 @@ const Testimonial = () => {
         }
       `}</style>
 
-         <div className="text-center mt-8 md:mt-12">
-                  <Button className="shadow-[0_4px_4px_4px_rgba(0,0,0,0.15)] cursor-pointer  bg-[#F0A500] inline-flex items-center gap-2 text-white font-semibold text-base hover:gap-3 transition-all duration-300">
-                     <NavLink to="/services" >
-                     <div className="flex gap-1 items-center"> Request a Service  <MoveRight className="h-4 w-4" /></div>
-                       
-                    </NavLink> 
-                  
-                  </Button>
-                </div>
+         <AnimatedSection animationType="slideUp" delay={400}>
+          <div className="text-center mt-8 md:mt-12">
+            <Button className="shadow-[0_4px_4px_4px_rgba(0,0,0,0.15)] cursor-pointer  bg-[#F0A500] inline-flex items-center gap-2 text-white font-semibold text-base hover:gap-3 transition-all duration-300">
+              <NavLink to="/services" >
+                <div className="flex gap-1 items-center"> Request a Service  <MoveRight className="h-4 w-4" /></div>
+              </NavLink> 
+            </Button>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );

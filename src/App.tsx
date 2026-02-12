@@ -15,7 +15,7 @@ const App = () => {
       </main>
       <FooterBottom />
       <WhatsAppWidget 
-        phoneNumber="2347044413998"
+        phoneNumber={import.meta.env.VITE_WHATSAPP_NUMBER}
         message="Hello! I'm interested in Gigsta services."
       />
     </>
