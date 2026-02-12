@@ -28,7 +28,7 @@ const testimonials: TestimonialType[] = [
   },
   {
     id: 2,
-    name: "Nora Bisong",
+    name: "Dara Bassey",
     image: "/images/testimonial4.jpg",
     stars: 4,
     text: "Very professional service. I’ll definitely use it again.",
@@ -42,14 +42,14 @@ const testimonials: TestimonialType[] = [
   },
   {
     id: 4,
-    name: "Emmanuel Effiong",
+    name: "Emmanuel Arinze",
     image: "/images/testimonial2.jpg",
     stars: 5,
     text: "The best platform for finding skilled professionals.",
   },
   {
     id: 5,
-    name: "Abasiama Okon",
+    name: "Maureen Bassey",
     image: "/images/testimonial5.jpg",
     stars: 4,
     text: "Everything went smoothly. Great communication!",
