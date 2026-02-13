@@ -21,7 +21,7 @@ interface TestimonialType {
 const testimonials: TestimonialType[] = [
   {
     id: 1,
-    name: "Nisikak Umoren",
+    name: "Hanifah Ayodeji",
     image: "/images/testimonial1.jpg",
     stars: 5,
     text: "Gigsta made everything so easy and smooth. Highly recommended!",
@@ -49,7 +49,7 @@ const testimonials: TestimonialType[] = [
   },
   {
     id: 5,
-    name: "Maureen Bassey",
+    name: "Abel Archibong",
     image: "/images/testimonial5.jpg",
     stars: 4,
     text: "Everything went smoothly. Great communication!",
