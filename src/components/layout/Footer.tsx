@@ -1,99 +1,102 @@
-
-import { PlaneIcon } from "@/assets/icons/svg";
+import { NavLink } from "react-router-dom";
+import { TwitterIcon, InstagramIcon, FacebookIcon, LinkedinIcon } from "@/assets/icons/svg";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 w-full ">
-      <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div>
-            <h4 className="font-semibold text-lg text-[#0D0F11] mb-6">
-              | Quick Links
-            </h4>
-            <ul className="space-y-3 text-[#0D0F11] font-normal flex flex-col gap-1 ">
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-lg text-[#0D0F11] mb-6">
-              | Support
-            </h4>
-            <ul className="space-y-3 text-[#0D0F11] font-normal flex flex-col gap-1 ">
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  FAQs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  Support
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  How it Works
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  Terms & Condition
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-[#F0A500]">
-                  Privacy Policy
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-semibold text-lg text-[#0D0F11] mb-6">
-              | Subscribe Us
-            </h4>
-            <p className="text-[#0D0F11] mb-4 max-w-sm">
-              Subscribe our newsletter to receive latest updates regularly from
-              us!
-            </p>
-
-            <div className="flex items-center gap-2 mb-3 relative">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full border border-gray-300 bg-white rounded-md px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#F0A500] "
-              />
-              <button className="bg-[#F0A500] p-3 rounded-md flex items-center justify-center hover:bg-[#e09500] transition absolute right-1.5">
-                <PlaneIcon className="w-4 h-4" />
-              </button>
+    <footer className="w-full">
+      {/* Main Footer Content */}
+      <div className="bg-gray-50 w-full">
+        <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div>
+              <div className="flex items-center gap-2 mb-6 -mt-2">
+                <img
+                  src="/images/logo.svg"
+                  alt="Gigsta logo"
+                  className="h-12 w-auto"
+                />
+                <h3 className="font-bold text-2xl text-[#0D0F11]">
+                  Gigsta
+                </h3>
+              </div>
+              <p className="text-[#0D0F11]/80 leading-relaxed text-sm">
+                Gigsta connects people in Uyo to trusted service providers for cleaning and cooking. If you're a service provider, we help you get real job requests and earn more.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-lg text-[#0D0F11] mb-8">
+                | Quick Links
+              </h3>
+              <ul className="space-y-3 text-[#0D0F11] font-normal flex flex-col gap-1">
+                <li>
+                  <NavLink to="/about" className="hover:text-[#F0A500] transition-colors">
+                    About Us
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/services" className="hover:text-[#F0A500] transition-colors">
+                    Pricing
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="#faqs" className="hover:text-[#F0A500] transition-colors">
+                    FAQs
+                  </NavLink>
+                </li>
+              </ul>
             </div>
 
-            <p className=" mt-4 text-xs text-[#0D0F11]">
-              By clicking send link you agree to receive message.
-            </p>
+            <div>
+              <h4 className="font-semibold text-lg text-[#0D0F11] mb-8">
+                | Support
+              </h4>
+              <ul className="space-y-3 text-[#0D0F11] font-normal flex flex-col gap-1 ">
+                <li>
+                  <NavLink to="/how-it-works" className="hover:text-[#F0A500] transition-colors">
+                    How it Works
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/terms" className="hover:text-[#F0A500] transition-colors">
+                    Terms & Conditions
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/privacy" className="hover:text-[#F0A500] transition-colors">
+                    Privacy Policy
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Footer Bottom */}
+      <div className="bg-[#F0A500]/20 w-full">
+        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <p className="text-sm text-[#0D0F11]">
+            © Copyrights 2026. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-4">
+            {[<FacebookIcon />, <InstagramIcon />, <TwitterIcon />, <LinkedinIcon />].map((icon, index) => (
+              <div
+                key={index}
+                className="w-10 h-10 rounded-full border bg-white border-[#535353]/50 flex items-center justify-center cursor-pointer hover:bg-[#0D0F11] hover:text-white transition"
+              >
+                <span className="text-sm font-bold">
+                  {icon}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <p className="font-bold text-2xl tracking-wide">
+            GIGSTA
+          </p>
+        </div>
+      </div>
     </footer>
   );
 };

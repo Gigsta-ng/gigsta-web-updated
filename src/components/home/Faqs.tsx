@@ -41,7 +41,7 @@ const faqs = [
 
 const Faqs = () => {
   return (
-    <section className="py-20 bg-[#F0A500] min-h-screen w-full flex items-center">
+    <section id="faqs" className="py-20 bg-[#F0A500] min-h-screen w-full flex items-center">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         <AnimatedSection animationType="slideDown" delay={100}>
           <h2 className="text-center text-3xl sm:text-4xl md:text-5xl mb-14 font-bold leading-[1.2] text-[#0D0F11]">

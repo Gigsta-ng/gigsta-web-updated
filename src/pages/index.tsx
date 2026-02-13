@@ -4,7 +4,6 @@ import Services from "@/components/home/Services";
 import HowGigstaWorks from "@/components/home/HowGigstaWorks";
 import Testimonial from "@/components/home/Testimonial";
 import Faqs from "@/components/home/Faqs";
-import Footer from "@/components/layout/Footer";
 import SEO from "@/components/SEO";
 import StructuredData from "@/components/StructuredData";
 
@@ -26,7 +25,6 @@ const HomePage = () => {
       <HowGigstaWorks />
       <Testimonial />
       <Faqs />
-      <Footer />
     </>
   );
 };

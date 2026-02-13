@@ -13,6 +13,9 @@ import RequestSuccess from "./pages/RequestSuccess";
 import HowItWorks from "./pages/HowItWorks";
 import TrustAndSafety from "./pages/TrustAndSafety";
 import Waitlist from "./pages/waitlist";
+import About from "./pages/About";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 
 const router = createBrowserRouter([
   {
@@ -27,8 +30,10 @@ const router = createBrowserRouter([
       { path: "request/success", element: <RequestSuccess /> },
       { path: "/how-it-works", element: <HowItWorks /> },
       { path: "/trust-and-safety", element: <TrustAndSafety /> },
-      { path: "/waitlist", element: <Waitlist />}
-
+      { path: "/waitlist", element: <Waitlist />},
+      { path: "/about", element: <About /> },
+      { path: "/terms", element: <Terms /> },
+      { path: "/privacy", element: <Privacy /> },
 
     ],
   },
