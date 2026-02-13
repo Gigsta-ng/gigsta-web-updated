@@ -1,7 +1,30 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { TwitterIcon, InstagramIcon, FacebookIcon, LinkedinIcon } from "@/assets/icons/svg";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleFaqsClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (location.pathname === "/") {
+      // Already on home page, just scroll
+      const faqsSection = document.getElementById("faqs");
+      if (faqsSection) {
+        faqsSection.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Navigate to home, then scroll after navigation
+      navigate("/");
+      setTimeout(() => {
+        const faqsSection = document.getElementById("faqs");
+        if (faqsSection) {
+          faqsSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  };
+
   return (
     <footer className="w-full">
       {/* Main Footer Content */}
@@ -39,9 +62,13 @@ const Footer = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="#faqs" className="hover:text-[#F0A500] transition-colors">
+                  <a 
+                    href="/#faqs" 
+                    onClick={handleFaqsClick}
+                    className="hover:text-[#F0A500] transition-colors cursor-pointer"
+                  >
                     FAQs
-                  </NavLink>
+                  </a>
                 </li>
               </ul>
             </div>
