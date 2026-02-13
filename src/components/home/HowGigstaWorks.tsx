@@ -9,20 +9,20 @@ const HowGigstaWorks = () => {
     {
       id: '01',
       icon: JobDoneIcon,
-      title: 'Post a Task',
-      description: 'Describe what you need done, when you need it, and your budget.'
+      title: 'Tell Us What You Need',
+      description: 'Choose your service, select your preferred date and time, and submit your request in minutes.'
     },
     {
       id: '02',
       icon: PostTaskIcon,
       title: 'Get Matched',
-      description: 'Describe what you need done, when you need it, and your budget.'
+      description: 'Our team reviews your request and assigns a vetted, reliable provider available in your area'
     },
     {
       id: '03',
       icon: CheckCircleIcon,
       title: 'Job Gets Done',
-      description: 'Describe what you need done, when you need it, and your budget.'
+      description: 'Professional Service. Zero Stress. Your assigned provider arrives and completes the job to standard.'
     }
   ];
 
