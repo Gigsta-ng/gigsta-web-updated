@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { submitToGoogleSheet } from "@/lib/googleSheets";
+import { toast } from "sonner";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
@@ -66,7 +67,9 @@ const Waitlist = () => {
       setErrors({});
     } catch (error) {
       console.error('Error submitting to waitlist:', error);
-      alert('Failed to join waitlist. Please try again or contact support.');
+      toast.error('Failed to join waitlist', {
+        description: 'Please try again or contact support.',
+      });
     } finally {
       setIsSubmitting(false);
     }

@@ -2,6 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
+import { Toaster } from "@/components/ui/sonner";
 import { Outlet } from "react-router-dom";
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         phoneNumber={import.meta.env.VITE_WHATSAPP_NUMBER}
         message="Hello! I'm interested in Gigsta services."
       />
+      <Toaster />
     </>
   );
 };

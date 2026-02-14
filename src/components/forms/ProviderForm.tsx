@@ -26,6 +26,7 @@ import {
 
 import { providerSchema, type ProviderFormValues } from "./schemas/providerSchema";
 import { submitToGoogleSheet } from "@/lib/googleSheets";
+import { toast } from "sonner";
 
 const ProviderForm = () => {
 const navigate = useNavigate();
@@ -89,7 +90,9 @@ const form = useForm<ProviderFormValues>({
       });
     } catch (error) {
       console.error('Error submitting provider application:', error);
-      alert('Failed to submit application. Please try again or contact support.');
+      toast.error('Failed to submit application', {
+        description: 'Please try again or contact support.',
+      });
     }
   };
 

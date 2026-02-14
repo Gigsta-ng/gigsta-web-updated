@@ -31,6 +31,7 @@ import {
 import { SERVICES } from "@/constants/services";
 import { submitToGoogleSheet } from "@/lib/googleSheets";
 import { saveUserDetails, loadUserDetails } from "@/lib/localStorage";
+import { toast } from "sonner";
 
 const ServiceRequestForm = () => {
   const navigate = useNavigate();
@@ -191,19 +192,20 @@ const ServiceRequestForm = () => {
       });
 
       // Navigate to success page
-      navigate("/request/success", {
-        replace: true,
-        state: {
-          fullName: values.fullName,
-          service: values.selectService,
+    navigate("/request/success", {
+      replace: true,
+      state: {
+        fullName: values.fullName,
+        service: values.selectService,
           pricingGroup: values.selectPricingGroup,
           package: values.selectPackage,
-        },
-      });
+      },
+    });
     } catch (error) {
       console.error('Error submitting service request:', error);
-      // You can add error handling UI here, e.g., toast notification
-      alert('Failed to submit service request. Please try again or contact support.');
+      toast.error('Failed to submit service request', {
+        description: 'Please try again or contact support.',
+      });
     }
   };
   
