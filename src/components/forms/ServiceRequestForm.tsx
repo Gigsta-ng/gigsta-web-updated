@@ -30,6 +30,7 @@ import {
 } from "./schemas/serviceRequestSchema";
 import { SERVICES } from "@/constants/services";
 import { submitToGoogleSheet } from "@/lib/googleSheets";
+import { saveUserDetails, loadUserDetails } from "@/lib/localStorage";
 
 const ServiceRequestForm = () => {
   const navigate = useNavigate();
@@ -41,6 +42,9 @@ const ServiceRequestForm = () => {
   const prefilledService = searchParams.get("service") || "";
   const prefilledPricingGroup = searchParams.get("pricingGroup") || "";
   const prefilledPackage = searchParams.get("package") || "";
+
+  // Load saved user details from localStorage
+  const savedUserDetails = loadUserDetails();
 
   // Compute initial package value with amount if all required params are present
   const getInitialPackageValue = () => {
@@ -62,21 +66,30 @@ const ServiceRequestForm = () => {
   const form = useForm<ServiceRequestFormValues>({
     resolver: zodResolver(serviceRequestSchema),
     defaultValues: {
-      fullName: "",
-      whatsappNumber: "",
-      emailAddress: "",
+      fullName: savedUserDetails?.fullName || "",
+      whatsappNumber: savedUserDetails?.whatsappNumber || "",
+      emailAddress: savedUserDetails?.emailAddress || "",
       selectService: prefilledService,
       selectPricingGroup: prefilledPricingGroup,
       selectPackage: getInitialPackageValue(),
-      serviceAddress: "",
+      serviceAddress: savedUserDetails?.serviceAddress || "",
       preferredDateTime: "",
       additionalDetails: "",
     },
     mode: "onTouched",
   });
 
-  // Initialize state and form values from URL params
+  // Initialize state and form values from URL params and localStorage
   useEffect(() => {
+    // Pre-fill from localStorage if available
+    if (savedUserDetails) {
+      form.setValue("fullName", savedUserDetails.fullName);
+      form.setValue("whatsappNumber", savedUserDetails.whatsappNumber);
+      form.setValue("emailAddress", savedUserDetails.emailAddress);
+      form.setValue("serviceAddress", savedUserDetails.serviceAddress);
+    }
+
+    // Pre-fill from URL params
     if (prefilledService) {
       setSelectedService(prefilledService);
       form.setValue("selectService", prefilledService);
@@ -102,7 +115,7 @@ const ServiceRequestForm = () => {
         form.setValue("selectPackage", packageValue);
       }
     }
-  }, [prefilledService, prefilledPricingGroup, prefilledPackage, form]);
+  }, [prefilledService, prefilledPricingGroup, prefilledPackage, form, savedUserDetails]);
 
   const currentService = selectedService || prefilledService;
   const currentPricingGroup = selectedPricingGroup || prefilledPricingGroup;
@@ -117,6 +130,26 @@ const ServiceRequestForm = () => {
 
   const onSubmit = async (values: ServiceRequestFormValues) => {
     try {
+      // Format the preferred date and time for better readability in Google Sheets
+      const formatDateTime = (dateTimeString: string): string => {
+        if (!dateTimeString) return '';
+        try {
+          const date = new Date(dateTimeString);
+          // Format as: "February 9, 2025 at 2:30 PM" or similar readable format
+          return date.toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+          });
+        } catch (error) {
+          // If parsing fails, return the original string
+          return dateTimeString;
+        }
+      };
+
       // Prepare data for Google Sheets
       const sheetData = {
         'Full Name': values.fullName,
@@ -126,7 +159,7 @@ const ServiceRequestForm = () => {
         'Pricing Group': values.selectPricingGroup,
         'Package': values.selectPackage,
         'Service Address': values.serviceAddress,
-        'Preferred Date & Time': values.preferredDateTime,
+        'Preferred Date & Time': formatDateTime(values.preferredDateTime) || values.preferredDateTime || '',
         'Additional Details': values.additionalDetails || '',
       };
 
@@ -136,8 +169,26 @@ const ServiceRequestForm = () => {
         data: sheetData,
       });
 
-      // Reset form
-      form.reset();
+      // Save user details to localStorage for future pre-filling
+      saveUserDetails({
+        fullName: values.fullName,
+        whatsappNumber: values.whatsappNumber,
+        emailAddress: values.emailAddress,
+        serviceAddress: values.serviceAddress,
+      });
+
+      // Reset form (but keep the saved details for next time)
+      form.reset({
+        fullName: values.fullName,
+        whatsappNumber: values.whatsappNumber,
+        emailAddress: values.emailAddress,
+        serviceAddress: values.serviceAddress,
+        selectService: "",
+        selectPricingGroup: "",
+        selectPackage: "",
+        preferredDateTime: "",
+        additionalDetails: "",
+      });
 
       // Navigate to success page
       navigate("/request/success", {
