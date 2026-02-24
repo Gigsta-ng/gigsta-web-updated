@@ -105,7 +105,7 @@ const form = useForm<ProviderFormValues>({
           </h2>
 
           <p className="mt-4.5 text-[#0D0F11] mx-auto font-medium max-w-2xl text-lg md:text-xl leading-relaxed">
-            Tell us what you need and we’ll match you with a verified professional.
+            {`Ready to join the Gigsta Network? Fill out the form below to apply as a service provider. We review applications within 24 hours and will get back to you with the next steps.`}
           </p>
         </div>
 
