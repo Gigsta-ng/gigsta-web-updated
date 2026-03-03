@@ -503,7 +503,7 @@ const ServiceRequestForm = () => {
 
      
         <p className="text-center mt-6 text-sm text-gray-900">
-         By submitting, you agree to our Terms of Service and Privacy Policy
+         By submitting, you agree to our <a href="/terms" className="text-[#F0A500]">Terms of Service</a> and <a href="/privacy" className="text-[#F0A500]">Privacy Policy</a>
         </p>
       </div>
     </section>
