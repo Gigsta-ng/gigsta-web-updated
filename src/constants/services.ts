@@ -20,26 +20,35 @@ export const SERVICES: Service[] = [
 
     pricingGroups: [
       {
-        title: "One-Time Cleaning",
+        title: "Residential Cleaning (One-Time Cleaning)",
         prices: [
-          { label: "Studio / Self-Contain", amount: "₦8,000" },
-          { label: "1 Bedroom Apartment", amount: "₦15,000" },
-          { label: "2 Bedroom Apartment", amount: "₦20,000" },
-          { label: "3 Bedroom Apartment", amount: "₦25,000" },
+          { label: "Studio / Self-Contain", amount: "₦9,000" },
+          { label: "1 Bedroom", amount: "₦11,000" },
+          { label: "2 Bedroom", amount: "₦14,000" },
+          { label: "3 Bedroom", amount: "₦17,000" },
         ],
       },
-
       {
-        title: "Monthly Cleaning Packages",
-        description: "(Once Weekly – 4 Visits Per Month)",
+        title: "Residential Cleaning – Monthly Packages",
+        description: "Once weekly (4 visits per month). Same apartment size for all visits.",
         prices: [
-          { label: "Studio / Self-Contain", amount: "₦25,000 / month" },
-          { label: "1 Bedroom Apartment", amount: "₦28,000 / month" },
-          { label: "2 Bedroom Apartment", amount: "₦40,000 / month" },
-          { label: "3 Bedroom Apartment", amount: "₦48,000 / month" },
+          { label: "Studio / Self-Contain", amount: "₦30,000 / month" },
+          { label: "1 Bedroom", amount: "₦38,000 / month" },
+          { label: "2 Bedroom", amount: "₦50,000 / month" },
+          { label: "3 Bedroom", amount: "₦62,000 / month" },
         ],
-        note:
-          "Monthly packages are apartment-size specific. Pricing applies to the same apartment size for all visits.",
+        note: "₦6,000 discount on all monthly packages.",
+      },
+      {
+        title: "Post-Construction Cleaning",
+        description: "For newly built or renovated spaces.",
+        prices: [
+          { label: "Studio / Small Unit", amount: "₦20,000" },
+          { label: "1 Bedroom", amount: "₦28,000" },
+          { label: "2 Bedroom", amount: "₦38,000" },
+          { label: "3 Bedroom", amount: "₦50,000" },
+        ],
+        note: "Site inspection recommended before confirmation. 50% upfront payment required.",
       },
     ],
   },
@@ -54,25 +63,30 @@ export const SERVICES: Service[] = [
     includes: [
       "Wash, dry, and fold",
       "Ironing and pressing",
-      "Care for delicates and special fabrics",
-      "Pick-up and delivery options available",
+      "Standard bundle: up to 1 full laundry basket",
+      "Heavy items (duvets, blankets, curtains) priced separately",
     ],
 
     pricingGroups: [
       {
-        title: "One-Time Laundry",
+        title: "Standard Laundry Bundle",
+        description: "Includes: Up to 1 full laundry basket • Washing • Drying • Ironing and Folding. Excludes: Heavy blankets, duvets, curtains.",
         prices: [
-          { label: "Small load (up to 6 kg)", amount: "₦5,000" },
-          { label: "Medium load (6–12 kg)", amount: "₦8,000" },
-          { label: "Large load (12+ kg)", amount: "₦12,000" },
+          { label: "Standard Laundry Bundle", amount: "₦9,000" },
         ],
       },
-
       {
-        title: "Weekly Laundry Plan",
+        title: "Heavy Items Pricing",
         prices: [
-          { label: "2 laundry visits per week", amount: "₦18,000" },
-          { label: "3 laundry visits per week", amount: "₦25,000" },
+          { label: "Duvet", amount: "₦4,000" },
+          { label: "Blanket", amount: "₦3,000" },
+          { label: "Curtains (per set)", amount: "₦5,000" },
+        ],
+      },
+      {
+        title: "Ironing Only",
+        prices: [
+          { label: "Up to 15 items", amount: "₦5,000" },
         ],
       },
     ],
