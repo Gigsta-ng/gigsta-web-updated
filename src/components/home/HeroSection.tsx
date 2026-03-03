@@ -44,7 +44,7 @@ const HeroSection = () => {
           <AnimatedSection animationType="slideUp" delay={700} threshold={0.01}>
             <p className="font-light sm:font-medium text-lg sm:text-xl md:text-[20px] leading-[1.6] tracking-normal text-white md:w-[60%] w-full">
               Gigsta connects people in Uyo to trusted service providers for
-              cleaning and cooking. If you're a service provider, we help you get
+              cleaning and laundry. If you're a service provider, we help you get
               real job requests and earn more.
             </p>
           </AnimatedSection>

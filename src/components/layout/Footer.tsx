@@ -43,7 +43,7 @@ const Footer = () => {
                 </h3>
               </div>
               <p className="text-[#0D0F11]/80 leading-relaxed text-sm">
-                Gigsta connects people in Uyo to trusted service providers for cleaning and cooking. If you're a service provider, we help you get real job requests and earn more.
+                Gigsta connects people in Uyo to trusted service providers for cleaning and laundry. If you're a service provider, we help you get real job requests and earn more.
               </p>
             </div>
             <div>

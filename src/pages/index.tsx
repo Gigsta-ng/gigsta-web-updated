@@ -12,9 +12,9 @@ const HomePage = () => {
     <>
       <SEO 
         title="Gigsta - On-Demand Home Services in Uyo, Nigeria"
-        description="Book trusted, vetted home service providers in Uyo. Professional house cleaning, home cooking, and more. Verified, insured providers. Book now!"
+        description="Book trusted, vetted home service providers in Uyo. Professional house cleaning, laundry, and more. Verified, insured providers. Book now!"
         url="https://gigsta.vercel.app/"
-        keywords="home services Uyo, house cleaning Uyo, home cooking Uyo, cleaning services Nigeria, on-demand services Uyo, professional cleaners Uyo, home services Akwa Ibom"
+        keywords="home services Uyo, house cleaning Uyo, laundry Uyo, cleaning services Nigeria, on-demand services Uyo, professional cleaners Uyo, home services Akwa Ibom"
       />
       <StructuredData type="Organization" />
       <StructuredData type="LocalBusiness" />

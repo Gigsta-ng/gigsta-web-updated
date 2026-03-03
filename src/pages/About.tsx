@@ -32,7 +32,7 @@ const About = () => {
     <>
       <SEO 
         title="About Gigsta - Trusted Home Services in Uyo, Nigeria"
-        description="Learn about Gigsta, Nigeria's first on-demand home services platform. We connect busy professionals with verified, reliable service providers for house cleaning, home cooking, and more in Uyo."
+        description="Learn about Gigsta, Nigeria's first on-demand home services platform. We connect busy professionals with verified, reliable service providers for house cleaning, laundry, and more in Uyo."
         url="https://gigsta.vercel.app/about"
         keywords="about gigsta, home services Uyo, trusted service providers Nigeria, gigsta mission"
       />
@@ -66,7 +66,7 @@ const About = () => {
                     At Gigsta, we believe that everyone deserves access to reliable, professional home services. Our mission is to make it easy for busy professionals in Uyo to find trusted service providers for their home needs.
                   </p>
                   <p className="text-lg text-[#0D0F11]/80 leading-relaxed mb-4">
-                    We're building a platform that connects clients with verified, insured professionals who are committed to delivering exceptional quality. Whether you need house cleaning, home cooking, or other home services, Gigsta is here to help.
+                    We're building a platform that connects clients with verified, insured professionals who are committed to delivering exceptional quality. Whether you need house cleaning, laundry, or other home services, Gigsta is here to help.
                   </p>
                   <p className="text-lg text-[#0D0F11]/80 leading-relaxed">
                     For service providers, we offer a platform to grow your business, get real job requests, and earn more while maintaining flexibility and independence.

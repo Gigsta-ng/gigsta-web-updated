@@ -1,6 +1,5 @@
 import type { Service } from "@/types/service";
 import cleaningImg from "@/assets/images/image4.jpg";
-import cookingImg from "@/assets/images/image3.jpg";
 
 export const SERVICES: Service[] = [
   {
@@ -46,33 +45,34 @@ export const SERVICES: Service[] = [
   },
 
   {
-    id: "cooking",
-    name: "Home Cooking Services",
-    heroImage: cookingImg,
-    shortDescription: "Reliable home cooking — one-time or scheduled",
+    id: "laundry",
+    name: "Laundry Services",
+    heroImage: "/images/laundry.jpg",
+    shortDescription: "Reliable laundry — wash, dry, fold & iron",
     description: "",
 
     includes: [
-      "Basic meal preparation",
-      "Cooking in client’s kitchen",
-      "Proper kitchen clean-up after cooking",
-      "Client provides all ingredients, gas, and kitchen equipment",
+      "Wash, dry, and fold",
+      "Ironing and pressing",
+      "Care for delicates and special fabrics",
+      "Pick-up and delivery options available",
     ],
 
     pricingGroups: [
       {
-        title: "One-Time Cooking",
+        title: "One-Time Laundry",
         prices: [
-          { label: "Single Meal Preparation", amount: "₦5,000" },
-          { label: "Two Meals (same visit)", amount: "₦8,000" },
+          { label: "Small load (up to 6 kg)", amount: "₦5,000" },
+          { label: "Medium load (6–12 kg)", amount: "₦8,000" },
+          { label: "Large load (12+ kg)", amount: "₦12,000" },
         ],
       },
 
       {
-        title: "Weekly Cooking Plan",
+        title: "Weekly Laundry Plan",
         prices: [
-          { label: "3 cooking visits per week", amount: "₦18,000" },
-          { label: "5 cooking visits per week", amount: "₦28,000" },
+          { label: "2 laundry visits per week", amount: "₦18,000" },
+          { label: "3 laundry visits per week", amount: "₦25,000" },
         ],
       },
     ],

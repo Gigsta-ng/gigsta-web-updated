@@ -5,10 +5,10 @@ const ServiceRequestPage = () => {
   return (
     <>
       <SEO 
-        title="Book a Service - Request House Cleaning or Home Cooking"
-        description="Book professional home services in Uyo. Fill out our service request form to get matched with verified providers for house cleaning or home cooking."
+        title="Book a Service - Request House Cleaning or laundry"
+        description="Book professional home services in Uyo. Fill out our service request form to get matched with verified providers for house cleaning or laundry."
         url="https://gigsta.vercel.app/request-service"
-        keywords="book cleaning service Uyo, request home service, book house cleaning, book home cooking Uyo"
+        keywords="book cleaning service Uyo, request home service, book house cleaning, book laundry Uyo"
       />
       <RequestService/>
     </>

@@ -17,7 +17,7 @@ const StructuredData = ({ type, data = {} }: StructuredDataProps) => {
           "name": "Gigsta",
           "url": "https://gigsta.vercel.app",
           "logo": "https://gigsta.vercel.app/logo.png",
-          "description": "On-demand home services platform in Uyo, Nigeria. Connecting busy professionals with vetted, reliable service providers for house cleaning, home cooking, and more.",
+          "description": "On-demand home services platform in Uyo, Nigeria. Connecting busy professionals with vetted, reliable service providers for house cleaning, laundry, and more.",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Uyo",

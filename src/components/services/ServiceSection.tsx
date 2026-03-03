@@ -5,14 +5,14 @@ import { CheckCircleIcon } from "@/assets/icons/svg";
 import type { Service } from "@/types/service";
 
 const ServiceSection = () => {
-  const [activeTab, setActiveTab] = useState<"cleaning" | "cooking">("cleaning");
+  const [activeTab, setActiveTab] = useState<"cleaning" | "laundry">("cleaning");
   const [fadeKey, setFadeKey] = useState(0);
 
   const activeService: Service | undefined = SERVICES.find(
     (s) => s.id === activeTab
   );
 
-  const handleTabChange = (tab: "cleaning" | "cooking") => {
+  const handleTabChange = (tab: "cleaning" | "laundry") => {
     setActiveTab(tab);
     setFadeKey((prev) => prev + 1); // Trigger fade animation
   };
@@ -43,14 +43,14 @@ const ServiceSection = () => {
               House Cleaning
             </button>
             <button
-              onClick={() => handleTabChange("cooking")}
+              onClick={() => handleTabChange("laundry")}
               className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                activeTab === "cooking"
+                activeTab === "laundry"
                   ? "bg-[#F0A500] text-[#0D0F11]"
                   : "bg-transparent text-gray-600 hover:text-[#0D0F11]"
               }`}
             >
-              Home Cooking
+              Laundry
             </button>
           </div>
         </div>
@@ -72,7 +72,7 @@ const ServiceSection = () => {
                 <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
-                    {activeTab === "cleaning" ? "House Cleaning" : "Home Cooking"}
+                    {activeTab === "cleaning" ? "House Cleaning" : "Laundry"}
                   </h3>
                   <p className="text-base md:text-lg text-white/90 font-medium">
                     Select from our variety of packages below to book your service

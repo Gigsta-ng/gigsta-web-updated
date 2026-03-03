@@ -1,4 +1,4 @@
-export type ServiceType = 'cleaning' | 'cooking';
+export type ServiceType = 'cleaning' | 'laundry';
 
 export interface PriceItem {
   label: string;   

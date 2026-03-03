@@ -11,14 +11,14 @@ interface SEOProps {
 
 const SEO = ({ 
   title = "Gigsta - On-Demand Home Services in Uyo, Nigeria",
-  description = "Book trusted, vetted home service providers in Uyo. Professional house cleaning, home cooking, and more. Verified, insured providers.",
+  description = "Book trusted, vetted home service providers in Uyo. Professional house cleaning, laundry, and more. Verified, insured providers.",
   image = "https://gigsta.vercel.app/og-image.jpg",
   url = "https://gigsta.vercel.app",
   type = "website",
   keywords
 }: SEOProps) => {
   const fullTitle = title.includes("Gigsta") ? title : `${title} | Gigsta`;
-  const defaultKeywords = "home services Uyo, house cleaning Uyo, home cooking Uyo, cleaning services Nigeria, on-demand services Uyo, professional cleaners Uyo, home services Akwa Ibom";
+  const defaultKeywords = "home services Uyo, house cleaning Uyo, laundry Uyo, cleaning services Nigeria, on-demand services Uyo, professional cleaners Uyo, home services Akwa Ibom";
   const metaKeywords = keywords || defaultKeywords;
   
   return (

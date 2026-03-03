@@ -156,7 +156,7 @@ const ServiceRequestForm = () => {
         'Full Name': values.fullName,
         'WhatsApp Number': values.whatsappNumber,
         'Email Address': values.emailAddress,
-        'Service': values.selectService === 'cleaning' ? 'House Cleaning' : 'Home Cooking',
+        'Service': values.selectService === 'cleaning' ? 'House Cleaning' : 'Laundry',
         'Pricing Group': values.selectPricingGroup,
         'Package': values.selectPackage,
         'Service Address': values.serviceAddress,
@@ -336,8 +336,8 @@ const ServiceRequestForm = () => {
                         <SelectItem value="cleaning">
                           House Cleaning
                         </SelectItem>
-                        <SelectItem value="cooking">
-                          Home Cooking
+                        <SelectItem value="laundry">
+                          Laundry
                         </SelectItem>
                       </SelectContent>
                     </Select>

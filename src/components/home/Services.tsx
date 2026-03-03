@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { Button } from "../ui/button";
-import image3 from "../../assets/images/image3.jpg";
 import image4 from "../../assets/images/image4.jpg";
 import { MoveRight } from "lucide-react";
 import { AnimatedSection, AnimatedChild } from "../AnimatedSection";
@@ -59,8 +58,8 @@ const Services = () => {
               <div className="relative h-65 md:h-80 lg:h-85 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-1">
                
                 <img
-                  src={image3}
-                  alt="Professional cleaning service"
+                  src="/images/laundry.jpg"
+                  alt="Professional laundry service"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
                 />
 
@@ -71,10 +70,10 @@ const Services = () => {
                 />
 
                 <div className="relative z-10 h-full flex flex-col items-start justify-end p-6 text-white">
-                  <h3 className="text-xl font-semibold mb-2">Cooking</h3>
+                  <h3 className="text-xl font-semibold mb-2">Laundry</h3>
 
                   <p className="text-sm text-white/90 max-w-xs">
-                    Reliable home cooks for daily or scheduled meal preparation.
+                    Wash, dry, fold &amp; iron — one-time or recurring laundry.
                   </p>
 
                   <div className="mt-2 inline-flex items-center gap-2 text-white text-base font-semibold hover:text-[#F0A500]">

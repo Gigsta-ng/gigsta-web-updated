@@ -9,7 +9,7 @@ const Terms = () => {
     },
     {
       title: "2. Description of Service",
-      content: "Gigsta is an on-demand home services platform that connects clients with verified service providers in Uyo, Akwa Ibom State, Nigeria. We facilitate connections between service seekers and service providers for tasks such as house cleaning, home cooking, and related home services.",
+      content: "Gigsta is an on-demand home services platform that connects clients with verified service providers in Uyo, Akwa Ibom State, Nigeria. We facilitate connections between service seekers and service providers for tasks such as house cleaning, laundry, and related home services.",
     },
     {
       title: "3. User Accounts",
