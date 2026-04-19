@@ -6,6 +6,16 @@ export const CLEANING_SPACE_OPTIONS: { id: CleaningSpaceSize; label: string }[] 
   { id: "3br", label: "3 Bedroom" },
 ];
 
+/**
+ * Tier list prices are defined for a typical 2-bedroom home. Studio is discounted;
+ * 3 bedroom is increased to reflect larger scope.
+ */
+export const CLEANING_SPACE_PRICE_MULTIPLIER: Record<CleaningSpaceSize, number> = {
+  studio: 0.88,
+  "2br": 1,
+  "3br": 1.15,
+};
+
 export type CleaningTierDef = {
   id: ServiceTier;
   name: string;
@@ -51,6 +61,15 @@ export const CLEANING_TIERS: CleaningTierDef[] = [
     ],
   },
 ];
+
+export function cleaningBasePriceForTierAndSpace(
+  tierId: ServiceTier,
+  spaceSize: CleaningSpaceSize
+): number {
+  const tier = CLEANING_TIERS.find((t) => t.id === tierId);
+  if (!tier) return 0;
+  return Math.round(tier.price * CLEANING_SPACE_PRICE_MULTIPLIER[spaceSize]);
+}
 
 export const CLEANING_ADDONS: {
   id: CleaningAddonId;

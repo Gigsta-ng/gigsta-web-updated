@@ -1,4 +1,7 @@
-import { CLEANING_ADDONS, CLEANING_TIERS } from "@/constants/cleaningConfigurator";
+import {
+  CLEANING_ADDONS,
+  cleaningBasePriceForTierAndSpace,
+} from "@/constants/cleaningConfigurator";
 import {
   LAUNDRY_CATALOG,
   LAUNDRY_EXPRESS_PREMIUM,
@@ -18,7 +21,7 @@ import type {
 import { isCombinedBookingConfiguration } from "@/types/serviceConfiguration";
 
 function recalculateCleaning(c: CleaningServiceConfiguration): CleaningServiceConfiguration {
-  const base = CLEANING_TIERS.find((t) => t.id === c.tier)?.price ?? 0;
+  const base = cleaningBasePriceForTierAndSpace(c.tier, c.spaceSize);
   const addonTotal = CLEANING_ADDONS.filter((a) => c.addonIds.includes(a.id)).reduce(
     (s, a) => s + a.price,
     0

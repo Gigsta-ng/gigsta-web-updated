@@ -52,9 +52,14 @@ const LAUNDRY_TIER_COPY: Record<
 
 type LaundryConfiguratorProps = {
   onDraftPersist?: () => void;
+  /** When false, hide the bottom subtotal bar (total shown only in booking Selected total). */
+  showSubtotalFooter?: boolean;
 };
 
-const LaundryConfigurator = ({ onDraftPersist }: LaundryConfiguratorProps) => {
+const LaundryConfigurator = ({
+  onDraftPersist,
+  showSubtotalFooter = true,
+}: LaundryConfiguratorProps) => {
   const [cart, setCart] = useState<Record<string, number>>(() => {
     if (typeof window === "undefined") return createEmptyLaundryCart();
     return loadServicesDraft()?.laundry?.cart ?? createEmptyLaundryCart();
@@ -83,6 +88,13 @@ const LaundryConfigurator = ({ onDraftPersist }: LaundryConfiguratorProps) => {
 
   const totalPrice = tier !== null ? tierPrices[tier] : 0;
   const hasItems = washTotal > 0;
+
+  /** Default to Standard (popular) as soon as the cart has at least one item. */
+  useEffect(() => {
+    if (washTotal > 0 && tier === null) {
+      setTier("standard");
+    }
+  }, [washTotal, tier]);
 
   const updateQty = (id: string, delta: number) => {
     setCart((prev) => {
@@ -258,19 +270,21 @@ const LaundryConfigurator = ({ onDraftPersist }: LaundryConfiguratorProps) => {
         </div>
       </div>
 
-      <div className="bg-gray-50 border-t border-gray-200 px-6 py-4 md:px-8">
-        <p className="text-sm text-gray-600">
-          Laundry subtotal (selected tier):{" "}
-          <span className="font-bold text-[#0D0F11]">
-            {hasItems && tier !== null ? formatNgn(totalPrice) : formatNgn(0)}
-          </span>
-          {hasItems && tier === null && (
-            <span className="block text-amber-800 font-normal mt-1">
-              Choose a service level to see your total.
+      {showSubtotalFooter && (
+        <div className="bg-gray-50 border-t border-gray-200 px-6 py-4 md:px-8">
+          <p className="text-sm text-gray-600">
+            Laundry subtotal (selected tier):{" "}
+            <span className="font-bold text-[#0D0F11]">
+              {hasItems && tier !== null ? formatNgn(totalPrice) : formatNgn(0)}
             </span>
-          )}
-        </p>
-      </div>
+            {hasItems && tier === null && (
+              <span className="block text-amber-800 font-normal mt-1">
+                Choose a service level to see your total.
+              </span>
+            )}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

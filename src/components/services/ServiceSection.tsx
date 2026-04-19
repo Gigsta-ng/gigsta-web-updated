@@ -1,31 +1,65 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { SERVICES } from "@/constants/services";
 import type { Service } from "@/types/service";
 import CleaningConfigurator from "@/components/services/CleaningConfigurator";
 import LaundryConfigurator from "@/components/services/LaundryConfigurator";
 import ServicesBookingBar from "@/components/services/ServicesBookingBar";
-import { loadServicesDraft, mergeServicesDraft } from "@/lib/servicesDraftStorage";
+import {
+  buildCleaningConfigurationFromDraft,
+  buildLaundryConfigurationFromDraft,
+} from "@/lib/buildBookingPayload";
+import {
+  getDefaultServicesDraft,
+  loadServicesDraft,
+  mergeServicesDraft,
+} from "@/lib/servicesDraftStorage";
+
+function tabFromUrlSearch(): "cleaning" | "laundry" | null {
+  if (typeof window === "undefined") return null;
+  const q = new URLSearchParams(window.location.search).get("tab");
+  if (q === "cleaning" || q === "laundry") return q;
+  return null;
+}
 
 const ServiceSection = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [activeTab, setActiveTab] = useState<"cleaning" | "laundry">(() => {
-    if (typeof window === "undefined") return "cleaning";
-    return loadServicesDraft()?.activeTab ?? "cleaning";
+    return tabFromUrlSearch() ?? loadServicesDraft()?.activeTab ?? "cleaning";
   });
   const [fadeKey, setFadeKey] = useState(0);
   const [draftVersion, setDraftVersion] = useState(0);
-  const [includeCleaning, setIncludeCleaning] = useState(true);
-  const [includeLaundry, setIncludeLaundry] = useState(true);
-  /** User must open a tab before its "include" row appears; avoids showing laundry when booking cleaning-only (and vice versa). */
-  const [visitedCleaning, setVisitedCleaning] = useState(
-    () => activeTab === "cleaning"
-  );
-  const [visitedLaundry, setVisitedLaundry] = useState(
-    () => activeTab === "laundry"
-  );
+  /** User must open a tab before its summary line appears; avoids showing laundry when booking cleaning-only (and vice versa). */
+  const [visitedCleaning, setVisitedCleaning] = useState(() => {
+    const fromUrl = tabFromUrlSearch();
+    if (fromUrl === "cleaning") return true;
+    if (fromUrl === "laundry") return false;
+    const t = loadServicesDraft()?.activeTab ?? "cleaning";
+    return t === "cleaning";
+  });
+  const [visitedLaundry, setVisitedLaundry] = useState(() => {
+    const fromUrl = tabFromUrlSearch();
+    if (fromUrl === "laundry") return true;
+    if (fromUrl === "cleaning") return false;
+    const t = loadServicesDraft()?.activeTab ?? "cleaning";
+    return t === "laundry";
+  });
 
   const onDraftPersist = useCallback(() => {
     setDraftVersion((v) => v + 1);
   }, []);
+
+  /** Per-line prices + configurator subtotals only when both services are fully configured; otherwise total lives in the booking bar only. */
+  const showPricingBreakdown = useMemo(() => {
+    if (typeof window === "undefined") return false;
+    if (!visitedCleaning || !visitedLaundry) return false;
+    const d = loadServicesDraft() ?? getDefaultServicesDraft();
+    return (
+      buildCleaningConfigurationFromDraft(d.cleaning) !== null &&
+      buildLaundryConfigurationFromDraft(d.laundry) !== null
+    );
+  }, [draftVersion, visitedCleaning, visitedLaundry]);
 
   const activeService: Service | undefined = SERVICES.find(
     (s) => s.id === activeTab
@@ -33,11 +67,24 @@ const ServiceSection = () => {
 
   const handleTabChange = (tab: "cleaning" | "laundry") => {
     setActiveTab(tab);
+    setSearchParams({ tab }, { replace: true });
     mergeServicesDraft({ activeTab: tab });
     if (tab === "cleaning") setVisitedCleaning(true);
     if (tab === "laundry") setVisitedLaundry(true);
     setFadeKey((prev) => prev + 1); // Trigger fade animation
   };
+
+  /** Sync tab from URL when it changes without matching state (deep links, back/forward). */
+  useEffect(() => {
+    const q = searchParams.get("tab");
+    if (q !== "cleaning" && q !== "laundry") return;
+    if (q === activeTab) return;
+    setActiveTab(q);
+    mergeServicesDraft({ activeTab: q });
+    if (q === "cleaning") setVisitedCleaning(true);
+    if (q === "laundry") setVisitedLaundry(true);
+    setFadeKey((prev) => prev + 1);
+  }, [searchParams, activeTab]);
 
   return (
     <section className="bg-gray-50 py-16 md:py-20 min-h-screen w-full">
@@ -132,9 +179,15 @@ const ServiceSection = () => {
             </div> */}
 
             {activeTab === "cleaning" ? (
-              <CleaningConfigurator onDraftPersist={onDraftPersist} />
+              <CleaningConfigurator
+                onDraftPersist={onDraftPersist}
+                showSubtotalFooter={showPricingBreakdown}
+              />
             ) : (
-              <LaundryConfigurator onDraftPersist={onDraftPersist} />
+              <LaundryConfigurator
+                onDraftPersist={onDraftPersist}
+                showSubtotalFooter={showPricingBreakdown}
+              />
             )}
           </div>
 
@@ -142,10 +195,7 @@ const ServiceSection = () => {
             draftVersion={draftVersion}
             visitedCleaning={visitedCleaning}
             visitedLaundry={visitedLaundry}
-            includeCleaning={includeCleaning}
-            includeLaundry={includeLaundry}
-            onIncludeCleaningChange={setIncludeCleaning}
-            onIncludeLaundryChange={setIncludeLaundry}
+            showLineAmounts={showPricingBreakdown}
           />
           </>
         )}

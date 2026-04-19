@@ -10,7 +10,7 @@ const Services = () => {
         <AnimatedSection animationType="slideDown" delay={100}>
           <div className="text-center mb-14">
             <h2 className="text-4xl sm:text-5xl  md:text-[50px] font-bold text-[#0D0F11] leading-[1.2] ">
-              Our Services
+              Book A Service
             </h2>
 
             <p className="mt-4.5 text-[#0D0F11] mx-auto max-w-2xl  font-medium text-lg md:text-xl leading-relaxed">
@@ -22,7 +22,7 @@ const Services = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <AnimatedChild animationType="slideRight" index={0} delay={200}>
-            <NavLink to="/services"  className="group block">
+            <NavLink to="/services?tab=cleaning" className="group block">
               <div className="relative h-65 md:h-80 lg:h-85 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-1">
              
                 <img
@@ -54,7 +54,7 @@ const Services = () => {
           </AnimatedChild>
 
           <AnimatedChild animationType="slideLeft" index={1} delay={200}>
-            <NavLink to="/services" className="group block">
+            <NavLink to="/services?tab=laundry" className="group block">
               <div className="relative h-65 md:h-80 lg:h-85 rounded-2xl overflow-hidden transition-transform duration-300 group-hover:-translate-y-1">
                
                 <img

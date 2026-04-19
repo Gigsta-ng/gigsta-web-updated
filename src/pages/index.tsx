@@ -20,8 +20,8 @@ const HomePage = () => {
       <StructuredData type="LocalBusiness" />
       <StructuredData type="WebSite" />
       <HeroSection />
-      <WhatGigstaDoes />
       <Services />
+      <WhatGigstaDoes />
       <HowGigstaWorks />
       <Testimonial />
       <Faqs />

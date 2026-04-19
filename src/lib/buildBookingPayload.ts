@@ -1,4 +1,7 @@
-import { CLEANING_ADDONS, CLEANING_TIERS } from "@/constants/cleaningConfigurator";
+import {
+  CLEANING_ADDONS,
+  cleaningBasePriceForTierAndSpace,
+} from "@/constants/cleaningConfigurator";
 import {
   LAUNDRY_CATALOG,
   LAUNDRY_EXPRESS_PREMIUM,
@@ -18,7 +21,7 @@ export function buildCleaningConfigurationFromDraft(
   cleaning: ServicesDraftV1["cleaning"]
 ): CleaningServiceConfiguration | null {
   if (cleaning.spaceSize === null || cleaning.tier === null) return null;
-  const base = CLEANING_TIERS.find((t) => t.id === cleaning.tier)?.price ?? 0;
+  const base = cleaningBasePriceForTierAndSpace(cleaning.tier, cleaning.spaceSize);
   const addonIds = CLEANING_ADDONS.filter((a) => cleaning.addons[a.id]).map(
     (a) => a.id
   );

@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import {
   buildCleaningConfigurationFromDraft,
@@ -11,8 +10,6 @@ import {
   getDefaultServicesDraft,
   loadServicesDraft,
 } from "@/lib/servicesDraftStorage";
-import { cn } from "@/lib/utils";
-import type { BookingNavigateConfiguration } from "@/types/serviceConfiguration";
 
 type ServicesBookingBarProps = {
   draftVersion: number;
@@ -20,20 +17,18 @@ type ServicesBookingBarProps = {
   visitedCleaning: boolean;
   /** User opened the Laundry tab at least once (or landed on it). */
   visitedLaundry: boolean;
-  includeCleaning: boolean;
-  includeLaundry: boolean;
-  onIncludeCleaningChange: (value: boolean) => void;
-  onIncludeLaundryChange: (value: boolean) => void;
+  /**
+   * When true, summary rows show per-service amounts (both services must be configured).
+   * Otherwise amounts appear only in the Selected total card.
+   */
+  showLineAmounts: boolean;
 };
 
 const ServicesBookingBar = ({
   draftVersion,
   visitedCleaning,
   visitedLaundry,
-  includeCleaning,
-  includeLaundry,
-  onIncludeCleaningChange,
-  onIncludeLaundryChange,
+  showLineAmounts,
 }: ServicesBookingBarProps) => {
   const navigate = useNavigate();
 
@@ -50,153 +45,154 @@ const ServicesBookingBar = ({
   const cleaningEstimate = cleaningPayload?.totalPrice ?? 0;
   const laundryEstimate = laundryPayload?.totalPrice ?? 0;
 
-  const effectiveIncludeCleaning = visitedCleaning && includeCleaning;
-  const effectiveIncludeLaundry = visitedLaundry && includeLaundry;
-
   const hasLaundryItems = Object.values(draft.laundry.cart).some((q) => q > 0);
   const laundryNeedsTier = hasLaundryItems && draft.laundry.tier === null;
 
   const combinedTotal =
-    (effectiveIncludeCleaning ? cleaningEstimate : 0) +
-    (effectiveIncludeLaundry && laundryReady ? laundryEstimate : 0);
+    (visitedCleaning && cleaningReady ? cleaningEstimate : 0) +
+    (visitedLaundry && laundryReady ? laundryEstimate : 0);
+
+  const onlyCleaning = visitedCleaning && !visitedLaundry;
+  const onlyLaundry = !visitedCleaning && visitedLaundry;
+  const bothServices = visitedCleaning && visitedLaundry;
 
   const canContinue =
-    (effectiveIncludeCleaning || effectiveIncludeLaundry) &&
-    (!effectiveIncludeCleaning || cleaningReady) &&
-    (!effectiveIncludeLaundry || laundryReady);
+    (visitedCleaning || visitedLaundry) &&
+    (onlyCleaning
+      ? cleaningReady
+      : onlyLaundry
+        ? laundryReady
+        : cleaningReady && laundryReady);
 
   const continueToForm = () => {
     const d = loadServicesDraft() ?? getDefaultServicesDraft();
     const cleaning = buildCleaningConfigurationFromDraft(d.cleaning);
     const laundry = buildLaundryConfigurationFromDraft(d.laundry);
 
-    if (!effectiveIncludeCleaning && !effectiveIncludeLaundry) {
-      toast.error("Select at least one service to include.");
-      return;
-    }
-    if (effectiveIncludeCleaning && !cleaning) {
-      toast.error("Choose a space size and cleaning tier to continue.");
-      return;
-    }
-    if (effectiveIncludeLaundry && !laundry) {
-      const hasItems = Object.values(d.laundry.cart).some((q) => q > 0);
-      toast.error(
-        hasItems && d.laundry.tier === null
-          ? "Choose a laundry service level to continue."
-          : "Add laundry items or uncheck laundry to continue."
-      );
+    if (!visitedCleaning && !visitedLaundry) {
+      toast.error("Choose a service tab above to build your booking.");
       return;
     }
 
-    let configuration: BookingNavigateConfiguration;
-
-    if (effectiveIncludeCleaning && effectiveIncludeLaundry && laundry && cleaning) {
-      configuration = { cleaning, laundry };
-    } else if (effectiveIncludeCleaning && !effectiveIncludeLaundry && cleaning) {
-      configuration = cleaning;
-    } else if (!effectiveIncludeCleaning && effectiveIncludeLaundry && laundry) {
-      configuration = laundry;
-    } else {
-      toast.error("Unable to build your booking. Check your selections.");
+    if (onlyCleaning) {
+      if (!cleaning) {
+        toast.error("Choose a space size and cleaning tier to continue.");
+        return;
+      }
+      navigate("/request-service", { state: { configuration: cleaning } });
       return;
     }
 
-    navigate("/request-service", { state: { configuration } });
+    if (onlyLaundry) {
+      if (!laundry) {
+        const hasItems = Object.values(d.laundry.cart).some((q) => q > 0);
+        toast.error(
+          hasItems && d.laundry.tier === null
+            ? "Choose a laundry service level to continue."
+            : "Add laundry items to your cart to continue."
+        );
+        return;
+      }
+      navigate("/request-service", { state: { configuration: laundry } });
+      return;
+    }
+
+    if (bothServices) {
+      if (!cleaning || !laundry) {
+        if (!cleaning) {
+          toast.error("Complete house cleaning selections (space size and tier) to continue.");
+          return;
+        }
+        const hasItems = Object.values(d.laundry.cart).some((q) => q > 0);
+        const needsTier = hasItems && d.laundry.tier === null;
+        toast.error(
+          needsTier
+            ? "Choose a laundry service level to continue."
+            : "Add laundry items and complete laundry options to continue."
+        );
+        return;
+      }
+      navigate("/request-service", {
+        state: { configuration: { cleaning, laundry } },
+      });
+    }
   };
+
+  if (!visitedCleaning && !visitedLaundry) {
+    return null;
+  }
+
+  const showSummarySection = bothServices;
 
   return (
     <div
       key={draftVersion}
-      className="mt-10 bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden"
+      className="mt-10 rounded-2xl shadow-sm border border-gray-200 overflow-hidden"
     >
-      <div className="p-6 md:p-8 space-y-6">
-        <h3 className="text-lg font-bold text-[#0D0F11]">Your booking</h3>
+      {showSummarySection && (
+        <div className="bg-white p-6 md:p-8 space-y-4">
+          <h3 className="text-lg font-bold text-[#0D0F11]">Summary</h3>
 
-        <div className="space-y-4">
-          {visitedCleaning && (
-            <label
-              className={cn(
-                "flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition",
-                includeCleaning
-                  ? "border-[#F0A500] bg-amber-50/60"
-                  : "border-gray-200 hover:bg-gray-50"
-              )}
-            >
-              <Checkbox
-                checked={includeCleaning}
-                onCheckedChange={(v) => onIncludeCleaningChange(v === true)}
-                className="mt-0.5 border-gray-400 data-[state=checked]:bg-[#F0A500] data-[state=checked]:border-[#F0A500]"
-              />
-              <div className="flex-1 min-w-0">
-                <span className="font-semibold text-[#0D0F11]">
-                  Include house cleaning
-                </span>
-                <p className="text-sm text-gray-600 mt-1">
+          <div className="divide-y divide-gray-100 rounded-xl border border-gray-200 bg-gray-50/50">
+            {visitedCleaning && (
+              <div className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                <span className="font-semibold text-[#0D0F11]">House cleaning</span>
+                <div className="text-sm sm:text-right">
                   {cleaningReady ? (
-                    <>
-                      Estimated from your tier & add-ons:{" "}
-                      <span className="font-semibold text-[#0D0F11]">
+                    showLineAmounts ? (
+                      <span className="font-semibold tabular-nums text-[#0D0F11]">
                         {formatNgn(cleaningEstimate)}
                       </span>
-                    </>
+                    ) : (
+                      <span className="text-gray-600">Ready</span>
+                    )
                   ) : (
                     <span className="text-amber-800">
-                      Select a space size and tier in the tab above.
+                      Select space size and tier in the tab above
                     </span>
                   )}
-                </p>
+                </div>
               </div>
-            </label>
-          )}
+            )}
 
-          {visitedLaundry && (
-            <label
-              className={cn(
-                "flex items-start gap-3 p-4 rounded-xl border cursor-pointer transition",
-                includeLaundry
-                  ? "border-[#F0A500] bg-amber-50/60"
-                  : "border-gray-200 hover:bg-gray-50",
-                includeLaundry && !laundryReady && "border-amber-300 bg-amber-50/30"
-              )}
-            >
-              <Checkbox
-                checked={includeLaundry}
-                onCheckedChange={(v) => onIncludeLaundryChange(v === true)}
-                className="mt-0.5 border-gray-400 data-[state=checked]:bg-[#F0A500] data-[state=checked]:border-[#F0A500]"
-              />
-              <div className="flex-1 min-w-0">
-                <span className="font-semibold text-[#0D0F11]">
-                  Include laundry
-                </span>
-                <p className="text-sm text-gray-600 mt-1">
+            {visitedLaundry && (
+              <div className="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+                <span className="font-semibold text-[#0D0F11]">Laundry</span>
+                <div className="text-sm sm:text-right">
                   {laundryReady ? (
-                    <>
-                      Estimated from your cart & tier:{" "}
-                      <span className="font-semibold text-[#0D0F11]">
+                    showLineAmounts ? (
+                      <span className="font-semibold tabular-nums text-[#0D0F11]">
                         {formatNgn(laundryEstimate)}
                       </span>
-                    </>
+                    ) : (
+                      <span className="text-gray-600">Ready</span>
+                    )
                   ) : laundryNeedsTier ? (
                     <span className="text-amber-800">
-                      Choose a laundry service level in the tab above, or uncheck
-                      this option.
+                      Choose a laundry service level in the tab above
                     </span>
                   ) : (
                     <span className="text-amber-800">
-                      Add items in the laundry tab above, or uncheck this option.
+                      Add items in the laundry tab above
                     </span>
                   )}
-                </p>
+                </div>
               </div>
-            </label>
-          )}
+            )}
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="bg-[#0D0F11] text-white px-6 py-5 md:px-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-gray-800">
+      <div
+        className={
+          showSummarySection
+            ? "bg-[#0D0F11] text-white px-6 py-5 md:px-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-gray-800"
+            : "bg-[#0D0F11] text-white px-6 py-5 md:px-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4"
+        }
+      >
         <div>
           <p className="text-gray-400 text-sm mb-1">Selected total</p>
-          <p className="text-3xl font-bold">{formatNgn(combinedTotal)}</p>
+          <p className="text-3xl font-bold tabular-nums">{formatNgn(combinedTotal)}</p>
         </div>
         <Button
           type="button"

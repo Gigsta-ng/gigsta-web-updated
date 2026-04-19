@@ -4,6 +4,7 @@ import {
   CLEANING_ADDONS,
   CLEANING_SPACE_OPTIONS,
   CLEANING_TIERS,
+  cleaningBasePriceForTierAndSpace,
 } from "@/constants/cleaningConfigurator";
 import { cn } from "@/lib/utils";
 import { formatNgn } from "@/lib/laundryPricing";
@@ -23,9 +24,14 @@ const defaultAddons: Record<CleaningAddonId, boolean> = {
 
 type CleaningConfiguratorProps = {
   onDraftPersist?: () => void;
+  /** When false, hide the bottom subtotal bar (total shown only in booking Selected total). */
+  showSubtotalFooter?: boolean;
 };
 
-const CleaningConfigurator = ({ onDraftPersist }: CleaningConfiguratorProps) => {
+const CleaningConfigurator = ({
+  onDraftPersist,
+  showSubtotalFooter = true,
+}: CleaningConfiguratorProps) => {
   const [spaceSize, setSpaceSize] = useState<CleaningSpaceSize | null>(() => {
     if (typeof window === "undefined") return null;
     return loadServicesDraft()?.cleaning?.spaceSize ?? null;
@@ -46,10 +52,10 @@ const CleaningConfigurator = ({ onDraftPersist }: CleaningConfiguratorProps) => 
     onDraftPersist?.();
   }, [spaceSize, tier, addons, onDraftPersist]);
 
-  const basePrice = useMemo(
-    () => CLEANING_TIERS.find((t) => t.id === tier)?.price ?? 0,
-    [tier]
-  );
+  const basePrice = useMemo(() => {
+    if (tier === null || spaceSize === null) return 0;
+    return cleaningBasePriceForTierAndSpace(tier, spaceSize);
+  }, [tier, spaceSize]);
 
   const addonTotal = useMemo(() => {
     return CLEANING_ADDONS.filter((a) => addons[a.id]).reduce((s, a) => s + a.price, 0);
@@ -86,7 +92,8 @@ const CleaningConfigurator = ({ onDraftPersist }: CleaningConfiguratorProps) => 
             ))}
           </div>
           <p className="text-xs text-gray-500 mt-2">
-            Space size helps us plan staffing; your quote below is based on tier and add-ons.
+            Studio is priced lower; 2 bedroom is our baseline; 3 bedroom costs more for larger
+            scope. Tier prices below update when you pick a size.
           </p>
         </div>
 
@@ -112,7 +119,9 @@ const CleaningConfigurator = ({ onDraftPersist }: CleaningConfiguratorProps) => 
                 )}
                 <h4 className="text-lg font-bold text-gray-900">{t.name}</h4>
                 <p className="mt-2 text-3xl font-extrabold text-[#0D0F11]">
-                  {formatNgn(t.price)}
+                  {formatNgn(
+                    cleaningBasePriceForTierAndSpace(t.id, spaceSize ?? "2br")
+                  )}
                 </p>
                 <p className="text-sm text-gray-600 mt-2 border-b border-gray-100 pb-4">
                   {t.tagline}
@@ -156,19 +165,21 @@ const CleaningConfigurator = ({ onDraftPersist }: CleaningConfiguratorProps) => 
         </div>
       </div>
 
-      <div className="bg-gray-50 border-t border-gray-200 px-6 py-4 md:px-8">
-        <p className="text-sm text-gray-600">
-          Cleaning subtotal (tier + add-ons):{" "}
-          <span className="font-bold text-[#0D0F11]">
-            {spaceSize !== null && tier !== null ? formatNgn(totalPrice) : formatNgn(0)}
-          </span>
-          {(spaceSize === null || tier === null) && (
-            <span className="block text-amber-800 font-normal mt-1">
-              Select a space size and tier to see your quote.
+      {showSubtotalFooter && (
+        <div className="bg-gray-50 border-t border-gray-200 px-6 py-4 md:px-8">
+          <p className="text-sm text-gray-600">
+            Cleaning subtotal (tier + add-ons):{" "}
+            <span className="font-bold text-[#0D0F11]">
+              {spaceSize !== null && tier !== null ? formatNgn(totalPrice) : formatNgn(0)}
             </span>
-          )}
-        </p>
-      </div>
+            {(spaceSize === null || tier === null) && (
+              <span className="block text-amber-800 font-normal mt-1">
+                Select a space size and tier to see your quote.
+              </span>
+            )}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
