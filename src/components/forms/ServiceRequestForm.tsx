@@ -43,6 +43,7 @@ import {
 import { applyBookingRemoval } from "@/lib/bookingConfigurationMutations";
 import {
   clearLaundrySelectionsInDraft,
+  clearServicesDraft,
   syncServicesDraftWithBookingConfiguration,
 } from "@/lib/servicesDraftStorage";
 import {
@@ -503,6 +504,8 @@ const ServiceRequestForm = () => {
         sheetName: 'Service Requests',
         data: sheetData,
       });
+
+      clearServicesDraft();
 
       // Save user details to localStorage for future pre-filling
       saveUserDetails({

@@ -172,6 +172,16 @@ export function saveServicesDraft(draft: ServicesDraftV1): void {
   }
 }
 
+/** Clears the services booking draft from session storage (e.g. after a successful request). */
+export function clearServicesDraft(): void {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // ignore
+  }
+}
+
 /** Replace any provided slice; omitted slices keep values from current storage. */
 export function mergeServicesDraft(partial: {
   activeTab?: ServicesTab;
