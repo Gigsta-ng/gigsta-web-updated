@@ -1,12 +1,31 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useCallback, useState } from "react";
 import { SERVICES } from "@/constants/services";
-import { CheckCircleIcon } from "@/assets/icons/svg";
 import type { Service } from "@/types/service";
+import CleaningConfigurator from "@/components/services/CleaningConfigurator";
+import LaundryConfigurator from "@/components/services/LaundryConfigurator";
+import ServicesBookingBar from "@/components/services/ServicesBookingBar";
+import { loadServicesDraft, mergeServicesDraft } from "@/lib/servicesDraftStorage";
 
 const ServiceSection = () => {
-  const [activeTab, setActiveTab] = useState<"cleaning" | "laundry">("cleaning");
+  const [activeTab, setActiveTab] = useState<"cleaning" | "laundry">(() => {
+    if (typeof window === "undefined") return "cleaning";
+    return loadServicesDraft()?.activeTab ?? "cleaning";
+  });
   const [fadeKey, setFadeKey] = useState(0);
+  const [draftVersion, setDraftVersion] = useState(0);
+  const [includeCleaning, setIncludeCleaning] = useState(true);
+  const [includeLaundry, setIncludeLaundry] = useState(true);
+  /** User must open a tab before its "include" row appears; avoids showing laundry when booking cleaning-only (and vice versa). */
+  const [visitedCleaning, setVisitedCleaning] = useState(
+    () => activeTab === "cleaning"
+  );
+  const [visitedLaundry, setVisitedLaundry] = useState(
+    () => activeTab === "laundry"
+  );
+
+  const onDraftPersist = useCallback(() => {
+    setDraftVersion((v) => v + 1);
+  }, []);
 
   const activeService: Service | undefined = SERVICES.find(
     (s) => s.id === activeTab
@@ -14,6 +33,9 @@ const ServiceSection = () => {
 
   const handleTabChange = (tab: "cleaning" | "laundry") => {
     setActiveTab(tab);
+    mergeServicesDraft({ activeTab: tab });
+    if (tab === "cleaning") setVisitedCleaning(true);
+    if (tab === "laundry") setVisitedLaundry(true);
     setFadeKey((prev) => prev + 1); // Trigger fade animation
   };
 
@@ -57,6 +79,7 @@ const ServiceSection = () => {
 
         {/* Service Content with Fade Animation */}
         {activeService && (
+          <>
           <div
             key={fadeKey}
             className="animate-fade-in"
@@ -75,7 +98,7 @@ const ServiceSection = () => {
                     {activeTab === "cleaning" ? "House Cleaning" : "Laundry"}
                   </h3>
                   <p className="text-base md:text-lg text-white/90 font-medium">
-                    Select from our variety of packages below to book your service
+                    Configure your service below, then continue to the request form with your live quote.
                   </p>
                 </div>
               </div>
@@ -91,7 +114,7 @@ const ServiceSection = () => {
             )}
 
             {/* What's Included Section */}
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 mb-12">
+            {/* <div className="bg-white rounded-2xl shadow-sm border border-gray-2x  00 p-8 mb-12">
               <h3 className="text-xl lg:text-2xl font-bold text-[#0D0F11] mb-6">
                 What's Included
               </h3>
@@ -106,59 +129,25 @@ const ServiceSection = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
 
-            {/* Pricing Sections */}
-            <div className="space-y-12">
-              {activeService.pricingGroups.map((pricingGroup, groupIndex) => (
-                <div key={groupIndex} className="space-y-6">
-                  {/* Pricing Group Header */}
-                  <div>
-                    <h3 className="text-xl lg:text-2xl font-bold text-[#0D0F11]">
-                      {pricingGroup.title}
-                    </h3>
-                    {pricingGroup.description && (
-                      <p className="text-sm text-gray-600 mt-1">
-                        {pricingGroup.description}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Individual Price Cards */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {pricingGroup.prices.map((price, priceIndex) => (
-                      <NavLink
-                        key={priceIndex}
-                        to={`/request-service?service=${activeService.id}&pricingGroup=${encodeURIComponent(pricingGroup.title)}&package=${encodeURIComponent(price.label)}`}
-                        className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 flex flex-col hover:bg-[#F0A500] hover:shadow-md hover:border-[#F0A500] transition-all duration-300 cursor-pointer group"
-                      >
-                        <div className="mb-4">
-                          <p className="text-sm font-medium text-gray-600 group-hover:text-white mb-2 transition-colors duration-300">
-                            {price.label}
-                          </p>
-                          <p className="text-xl font-normal text-[#0D0F11] group-hover:text-white transition-colors duration-300">
-                            {price.amount}
-                          </p>
-                        </div>
-                        <div className="mt-auto">
-                          <span className="text-[#F0A500] font-semibold text-sm hover:underline group-hover:text-black transition-colors duration-300">
-                            Book Now →
-                          </span>
-                        </div>
-                      </NavLink>
-          ))}
-        </div>
-
-                  {/* Note */}
-                  {pricingGroup.note && (
-                    <p className="text-xs italic text-gray-500 bg-gray-50 p-4 rounded-lg border border-gray-100">
-                      <span className="font-medium">Note:</span> {pricingGroup.note}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
+            {activeTab === "cleaning" ? (
+              <CleaningConfigurator onDraftPersist={onDraftPersist} />
+            ) : (
+              <LaundryConfigurator onDraftPersist={onDraftPersist} />
+            )}
           </div>
+
+          <ServicesBookingBar
+            draftVersion={draftVersion}
+            visitedCleaning={visitedCleaning}
+            visitedLaundry={visitedLaundry}
+            includeCleaning={includeCleaning}
+            includeLaundry={includeLaundry}
+            onIncludeCleaningChange={setIncludeCleaning}
+            onIncludeLaundryChange={setIncludeLaundry}
+          />
+          </>
         )}
       </div>
 

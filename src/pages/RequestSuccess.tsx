@@ -19,6 +19,11 @@ useEffect(() => {
 }, [state, navigate]);
  const { fullName, service } = (state || {}) as { fullName?: string; service?: string };
 
+  const serviceDisplay =
+    service === "both"
+      ? "house cleaning and laundry"
+      : service?.replace(/-/g, " ");
+
 
 
 
@@ -76,12 +81,12 @@ useEffect(() => {
       
           <p className="text-gray-600 text-base max-w-md mx-auto leading-relaxed">
             We've received your service request
-            {service && (
+            {serviceDisplay && (
               <>
                 {" "}
                 for{" "}
                 <span className="font-semibold text-gray-900">
-                  {service.replace("-", " ")}
+                  {serviceDisplay}
                 </span>
               </>
             )}
