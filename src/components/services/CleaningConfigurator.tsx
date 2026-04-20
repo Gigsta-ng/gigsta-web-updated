@@ -91,10 +91,6 @@ const CleaningConfigurator = ({
               </button>
             ))}
           </div>
-          <p className="text-xs text-gray-500 mt-2">
-            Studio is priced lower; 2 bedroom is our baseline; 3 bedroom costs more for larger
-            scope. Tier prices below update when you pick a size.
-          </p>
         </div>
 
         <div>

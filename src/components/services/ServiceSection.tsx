@@ -144,9 +144,6 @@ const ServiceSection = () => {
                   <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3">
                     {activeTab === "cleaning" ? "House Cleaning" : "Laundry"}
                   </h3>
-                  <p className="text-base md:text-lg text-white/90 font-medium">
-                    Configure your service below, then continue to the request form with your live quote.
-                  </p>
                 </div>
               </div>
             </div>

@@ -14,8 +14,7 @@ const Services = () => {
             </h2>
 
             <p className="mt-4.5 text-[#0D0F11] mx-auto max-w-2xl  font-medium text-lg md:text-xl leading-relaxed">
-              Professional home services tailored to your needs. All providers are
-              verified, insured, and committed to delivering exceptional quality.
+              Book professional home services tailored to your needs in one easy step.
             </p>
           </div>
         </AnimatedSection>
