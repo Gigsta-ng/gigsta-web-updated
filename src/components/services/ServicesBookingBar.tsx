@@ -56,13 +56,14 @@ const ServicesBookingBar = ({
   const onlyLaundry = !visitedCleaning && visitedLaundry;
   const bothServices = visitedCleaning && visitedLaundry;
 
+  /** Single-tab flows need that service ready; if both tabs were opened, either completed service is enough to continue. */
   const canContinue =
     (visitedCleaning || visitedLaundry) &&
     (onlyCleaning
       ? cleaningReady
       : onlyLaundry
         ? laundryReady
-        : cleaningReady && laundryReady);
+        : cleaningReady || laundryReady);
 
   const continueToForm = () => {
     const d = loadServicesDraft() ?? getDefaultServicesDraft();
@@ -98,23 +99,21 @@ const ServicesBookingBar = ({
     }
 
     if (bothServices) {
-      if (!cleaning || !laundry) {
-        if (!cleaning) {
-          toast.error("Complete house cleaning selections (space size and tier) to continue.");
-          return;
-        }
-        const hasItems = Object.values(d.laundry.cart).some((q) => q > 0);
-        const needsTier = hasItems && d.laundry.tier === null;
-        toast.error(
-          needsTier
-            ? "Choose a laundry service level to continue."
-            : "Add laundry items and complete laundry options to continue."
-        );
+      if (cleaning && laundry) {
+        navigate("/request-service", {
+          state: { configuration: { cleaning, laundry } },
+        });
         return;
       }
-      navigate("/request-service", {
-        state: { configuration: { cleaning, laundry } },
-      });
+      if (cleaning) {
+        navigate("/request-service", { state: { configuration: cleaning } });
+        return;
+      }
+      if (laundry) {
+        navigate("/request-service", { state: { configuration: laundry } });
+        return;
+      }
+      toast.error("Complete selections for at least one service to continue.");
     }
   };
 
@@ -122,7 +121,8 @@ const ServicesBookingBar = ({
     return null;
   }
 
-  const showSummarySection = bothServices;
+  /** Hide the two-line Summary until both services are fully configured (same as per-line pricing). */
+  const showSummarySection = showLineAmounts;
 
   return (
     <div
