@@ -1,56 +1,58 @@
 import { Successcheck } from "@/assets/icons/svg";
 
 const SafetyMeasures = () => {
+
   const safetyFeatures = [
-    {
-      title: "Rigorous Vetting Process",
-      description:
-        "Every provider undergoes a thorough screening process before joining Gigsta, ensuring only qualified and trustworthy professionals are on our platform.",
-      checks: [
-        "National criminal background check",
-        "Sex offender registry check",
-        "Identity verification",
-        "Previous employer references",
-        "Skills and certification verification",
-      ],
-    },
-    {
-      title: "Secure Messaging",
-      description:
-        "Clients and providers communicate through WhatsApp and email, keeping all conversations documented and accessible for reference or dispute resolution.",
-      checks: [
-        "Direct WhatsApp communication",
-        "Email correspondence supported",
-        "No personal phone numbers shared",
-        "Message history saved for disputes",
-        "24/7 message monitoring for safety",
-      ],
-    },
-    {
-      title: "Reference Checks",
-      description:
-        "We go beyond paperwork by directly contacting previous employers and clients to verify a provider's track record and professionalism.",
-      checks: [
-        "Previous employer contact verification",
-        "Past client feedback review",
-        "Work history confirmation",
-        "Professional conduct assessment",
-        "Skill competency validation",
-      ],
-    },
-    {
-      title: "Ongoing Monitoring",
-      description:
-        "Our commitment to safety doesn't stop at onboarding, we continuously monitor provider activity and ratings to maintain platform standards.",
-      checks: [
-        "Regular performance reviews",
-        "Customer rating tracking",
-        "Complaint and dispute monitoring",
-        "Periodic re-verification checks",
-        "Immediate suspension for violations",
-      ],
-    },
-  ];
+  {
+    title: "Verified Providers",
+    description:
+      "Every provider undergoes a thorough screening process before joining Gigsta, ensuring only qualified and trustworthy professionals are on our platform.",
+    checks: [
+      "National criminal background check",
+      "Government-issued ID verification",
+      "Sex offender registry check",
+      "Skills and certification verification",
+      "Previous employer references",
+    ],
+  },
+  {
+    title: "Secure Messaging",
+    description:
+      "Clients and providers communicate through WhatsApp and email, keeping all conversations documented and accessible for reference or dispute resolution.",
+    checks: [
+      "Direct WhatsApp communication",
+      "Email correspondence supported",
+      "No personal phone numbers shared",
+      "Message history saved for disputes",
+      "24/7 message monitoring for safety",
+    ],
+  },
+  {
+    title: "Customer Support",
+    description:
+      "Our dedicated support team is always available to help resolve issues, answer questions, and ensure every experience on Gigsta meets your expectations.",
+    checks: [
+      "24/7 support availability",
+      "Fast response to complaints and disputes",
+      "Dedicated resolution team",
+      "Clear escalation process for serious issues",
+      "Follow-up to confirm issue resolution",
+    ],
+  },
+  {
+    title: "Ongoing Monitoring",
+    description:
+      "Our commitment to safety doesn't stop at onboarding — we continuously monitor provider activity and ratings to maintain platform standards.",
+    checks: [
+      "Regular performance reviews",
+      "Customer rating tracking",
+      "Complaint and dispute monitoring",
+      "Periodic re-verification checks",
+      "Immediate suspension for violations",
+    ],
+  },
+];
+
 
   return (
     <section className="min-h-screen w-full bg-gray-50 flex items-center py-20 md:py-20">
