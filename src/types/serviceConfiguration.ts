@@ -1,8 +1,27 @@
-export type CleaningSpaceSize = "studio" | "2br" | "3br";
+export type CleaningSpaceSize =
+  | "studio"
+  | "1br"
+  | "2br"
+  | "3br"
+  | "4br"
+  | "5br"
+  | "office_small";
 
 export type ServiceTier = "lite" | "standard" | "pro";
 
-export type CleaningAddonId = "fridge" | "dishes" | "windows" | "clothes_basket";
+export type CleaningAddonId =
+  | "fridge"
+  | "dishes"
+  | "windows"
+  | "cooking"
+  | "wardrobe"
+  | "microwave_oven"
+  | "extra_toilet"
+  | "ceiling_fan"
+  | "trash_removal"
+  | "market_run"
+  | "wash_clothes"
+  | "ironing";
 
 export interface CleaningServiceConfiguration {
   service: "cleaning";
@@ -42,7 +61,7 @@ export type RequestServiceNavigateState = {
 };
 
 export function isCombinedBookingConfiguration(
-  c: BookingNavigateConfiguration
+  c: BookingNavigateConfiguration,
 ): c is CombinedBookingConfiguration {
   if (c === null || typeof c !== "object" || "service" in c) return false;
   const x = c as CombinedBookingConfiguration;
