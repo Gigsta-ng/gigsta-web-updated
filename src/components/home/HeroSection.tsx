@@ -29,14 +29,14 @@ const HeroSection = () => {
               delay={200}
               threshold={0.01}
             >
-              <div>
+              <div className="max-w-2xl">
                 <AnimatedChild animationType="fadeIn" index={0} delay={300}>
                   <h1 className="font-bold text-4xl sm:text-5xl md:text-[60px] leading-[1.2] tracking-normal mb-4 md:mb-3 lg:mb-0 text-white">
-                    Need Help? Got Skills?
+                    Need Laundry or Cleaning Services in Uyo?
                   </h1>
                 </AnimatedChild>
                 <AnimatedChild animationType="fadeIn" index={1} delay={500}>
-                  <h1 className="font-bold text-4xl sm:text-5xl md:text-[60px] leading-[1.2] tracking-normal text-[#F0A500] ">
+                  <h1 className="font-bold text-4xl sm:text-5xl md:text-[60px] leading-[1.2] tracking-normal text-[#F0A500]">
                     Gigsta gets you Connected
                   </h1>
                 </AnimatedChild>
@@ -48,9 +48,8 @@ const HeroSection = () => {
               threshold={0.01}
             >
               <p className="font-light sm:font-medium text-lg sm:text-xl md:text-[20px] leading-[1.6] tracking-normal text-white md:w-[60%] w-full">
-                Gigsta connects people in Uyo to trusted service providers for
-                cleaning and laundry. If you're a service provider, we help you
-                get real job requests and earn more.
+                Book trusted professionals near you in minutes for all your home
+                service needs. Fast, reliable, and hassle-free.
               </p>
             </AnimatedSection>
           </div>
