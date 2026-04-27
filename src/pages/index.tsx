@@ -1,7 +1,8 @@
 import HeroSection from "@/components/home/HeroSection";
+import AnimatedCounter from "@/components/home/AnimatedCounter";
 import WhatGigstaDoes from "@/components/home/WhatGigstaDoes";
 import Services from "@/components/home/Services";
-import HowGigstaWorks from "@/components/home/HowGigstaWorks";
+import HowGigstaWorks from "@/components/home/WhyUseGigsta";
 import Testimonial from "@/components/home/Testimonial";
 import Faqs from "@/components/home/Faqs";
 import SEO from "@/components/SEO";
@@ -20,6 +21,7 @@ const HomePage = () => {
       <StructuredData type="LocalBusiness" />
       <StructuredData type="WebSite" />
       <HeroSection />
+      <AnimatedCounter />
       <Services />
       <WhatGigstaDoes />
       <HowGigstaWorks />

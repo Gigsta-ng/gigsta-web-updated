@@ -14,10 +14,10 @@ const App = () => {
         <Outlet />
       </main>
       <Footer />
-      <WhatsAppWidget 
+      {/* <WhatsAppWidget 
         phoneNumber={import.meta.env.VITE_WHATSAPP_NUMBER}
         message="Hello! I'm interested in Gigsta services."
-      />
+      /> */}
       <Toaster />
     </>
   );

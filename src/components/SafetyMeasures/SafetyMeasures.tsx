@@ -15,18 +15,30 @@ const SafetyMeasures = () => {
       "Previous employer references",
     ],
   },
-  {
-    title: "Secure Messaging",
-    description:
-      "Clients and providers communicate through WhatsApp and email, keeping all conversations documented and accessible for reference or dispute resolution.",
-    checks: [
-      "Direct WhatsApp communication",
-      "Email correspondence supported",
-      "No personal phone numbers shared",
-      "Message history saved for disputes",
-      "24/7 message monitoring for safety",
-    ],
-  },
+ {
+  title: "Ratings & Reviews",
+  description:
+    "Every completed job is open for honest feedback. Our review system keeps providers accountable and helps you make informed decisions before booking.",
+  checks: [
+    "Post-service rating required from clients",
+    "Verified reviews from real bookings only",
+    "Providers with low ratings are flagged",
+    "Clients can report unprofessional conduct",
+    "Review history visible on every provider profile",
+  ],
+},
+{
+  title: "Secure Payments",
+  description:
+    "Your money is protected at every step. We ensure payments are only processed through trusted channels with full transaction transparency.",
+  checks: [
+    "No cash payments to providers directly",
+    "Payment only after service confirmation",
+    "Receipts issued for every transaction",
+    "Refund process for disputed services",
+    "No hidden charges or surprise fees",
+  ],
+},
   {
     title: "Customer Support",
     description:
@@ -39,18 +51,7 @@ const SafetyMeasures = () => {
       "Follow-up to confirm issue resolution",
     ],
   },
-  {
-    title: "Ongoing Monitoring",
-    description:
-      "Our commitment to safety doesn't stop at onboarding — we continuously monitor provider activity and ratings to maintain platform standards.",
-    checks: [
-      "Regular performance reviews",
-      "Customer rating tracking",
-      "Complaint and dispute monitoring",
-      "Periodic re-verification checks",
-      "Immediate suspension for violations",
-    ],
-  },
+
 ];
 
 

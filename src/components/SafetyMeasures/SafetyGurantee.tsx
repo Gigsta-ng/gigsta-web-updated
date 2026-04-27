@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import CountUpNumber from "./CountUpNumber";
+import CountUpNumber from "../shared/CountUpNumber";
 
 const SafetyGuarantee = () => {
   const [startCount, setStartCount] = useState(false);

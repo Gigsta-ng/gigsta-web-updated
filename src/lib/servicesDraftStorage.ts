@@ -60,7 +60,15 @@ export function getDefaultServicesDraft(): ServicesDraftV1 {
 }
 
 const TIER_SET = new Set<ServiceTier>(["lite", "standard", "pro"]);
-const SPACE_SET = new Set<CleaningSpaceSize>(["studio", "2br", "3br"]);
+const SPACE_SET = new Set<CleaningSpaceSize>([
+  "studio",
+  "1br",
+  "2br",
+  "3br",
+  "4br",
+  "5br",
+  "office_small",
+]);
 
 function sanitizeCleaningAddons(
   raw: unknown
