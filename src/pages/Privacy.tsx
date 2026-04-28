@@ -58,7 +58,7 @@ const Privacy = () => {
       <SEO 
         title="Privacy Policy - Gigsta"
         description="Read Gigsta's Privacy Policy to understand how we collect, use, and protect your personal information when you use our on-demand home services platform."
-        url="https://gigsta.vercel.app/privacy"
+        url="https://gigsta.pro/privacy"
         keywords="gigsta privacy policy, data protection, privacy rights"
       />
       <div className="min-h-screen bg-gray-50">

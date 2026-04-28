@@ -15,8 +15,8 @@ const StructuredData = ({ type, data = {} }: StructuredDataProps) => {
           ...baseData,
           "@type": "Organization",
           "name": "Gigsta",
-          "url": "https://gigsta.vercel.app",
-          "logo": "https://gigsta.vercel.app/logo.png",
+          "url": "https://gigsta.pro",
+          "logo": "https://gigsta.pro/logo.png",
           "description": "On-demand home services platform in Uyo, Nigeria. Connecting busy professionals with vetted, reliable service providers for house cleaning, laundry, and more.",
           "address": {
             "@type": "PostalAddress",
@@ -38,7 +38,7 @@ const StructuredData = ({ type, data = {} }: StructuredDataProps) => {
           ...baseData,
           "@type": "LocalBusiness",
           "name": "Gigsta",
-          "image": "https://gigsta.vercel.app/logo.png",
+          "image": "https://gigsta.pro/logo.png",
           "description": "On-demand home services in Uyo, Nigeria",
           "address": {
             "@type": "PostalAddress",
@@ -69,7 +69,7 @@ const StructuredData = ({ type, data = {} }: StructuredDataProps) => {
           },
           "availableChannel": {
             "@type": "ServiceChannel",
-            "serviceUrl": "https://gigsta.vercel.app/services"
+            "serviceUrl": "https://gigsta.pro/services"
           },
           ...data
         };
@@ -79,10 +79,10 @@ const StructuredData = ({ type, data = {} }: StructuredDataProps) => {
           ...baseData,
           "@type": "WebSite",
           "name": "Gigsta",
-          "url": "https://gigsta.vercel.app",
+          "url": "https://gigsta.pro",
           "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://gigsta.vercel.app/services?q={search_term_string}",
+            "target": "https://gigsta.pro/services?q={search_term_string}",
             "query-input": "required name=search_term_string"
           },
           ...data

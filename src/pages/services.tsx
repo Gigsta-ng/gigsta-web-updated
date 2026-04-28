@@ -9,7 +9,7 @@ const ServicesPage = () => {
       <SEO 
         title="Our Services - House Cleaning & laundry in Uyo"
         description="Choose from our professional home services in Uyo: one-time or recurring house cleaning, laundry, and more. Transparent pricing, verified providers."
-        url="https://gigsta.vercel.app/services"
+        url="https://gigsta.pro/services"
         keywords="house cleaning services Uyo, laundry Uyo, cleaning packages Uyo, professional cleaners Uyo, home services pricing"
       />
       <StructuredData type="Service" />

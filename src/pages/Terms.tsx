@@ -66,7 +66,7 @@ const Terms = () => {
       <SEO 
         title="Terms & Conditions - Gigsta"
         description="Read Gigsta's Terms and Conditions. Understand the rules and guidelines for using our on-demand home services platform in Uyo, Nigeria."
-        url="https://gigsta.vercel.app/terms"
+        url="https://gigsta.pro/terms"
         keywords="gigsta terms and conditions, terms of service, user agreement"
       />
       <div className="min-h-screen bg-gray-50">

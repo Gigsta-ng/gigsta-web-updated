@@ -33,7 +33,7 @@ const About = () => {
       <SEO 
         title="About Gigsta - Trusted Home Services in Uyo, Nigeria"
         description="Learn about Gigsta, Nigeria's first on-demand home services platform. We connect busy professionals with verified, reliable service providers for house cleaning, laundry, and more in Uyo."
-        url="https://gigsta.vercel.app/about"
+        url="https://gigsta.pro/about"
         keywords="about gigsta, home services Uyo, trusted service providers Nigeria, gigsta mission"
       />
       <div className="min-h-screen bg-gray-50">
