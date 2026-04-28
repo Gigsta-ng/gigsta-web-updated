@@ -15,12 +15,9 @@ import type {
   ServiceTier,
 } from "@/types/serviceConfiguration";
 
-const defaultAddons: Record<CleaningAddonId, boolean> = {
-  fridge: false,
-  dishes: false,
-  windows: false,
-  clothes_basket: false,
-};
+const defaultAddons = Object.fromEntries(
+  CLEANING_ADDONS.map((a) => [a.id, false])
+) as Record<CleaningAddonId, boolean>;
 
 type CleaningConfiguratorProps = {
   onDraftPersist?: () => void;
