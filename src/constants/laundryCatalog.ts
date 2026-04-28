@@ -21,16 +21,18 @@ export const LAUNDRY_CATALOG: LaundryCatalogItem[] = [
   { category: "Casual & Activewear", id: "denim_jacket", name: "Denim Jacket / Heavy", base_price: 500, iron_fee: 300, auto_iron: true },
   { category: "Casual & Activewear", id: "jeans", name: "Jeans (Trousers)", base_price: 400, iron_fee: 300, auto_iron: true },
   { category: "Casual & Activewear", id: "polo", name: "Polo / Jersey / T-Shirt", base_price: 250, iron_fee: 150, auto_iron: true },
-  { category: "Casual & Activewear", id: "gown", name: "Gowns / Dresses", base_price: 500, iron_fee: 400, auto_iron: true },
+  { category: "Casual & Activewear", id: "gown", name: "Gowns / Dresses", base_price: 700, iron_fee: 400, auto_iron: true },
   { category: "Casual & Activewear", id: "blouse", name: "Blouses / Skirts", base_price: 300, iron_fee: 300, auto_iron: true },
-  { category: "Casual & Activewear", id: "joggers", name: "Joggers / Shorts", base_price: 300, iron_fee: 0, auto_iron: false },
-  { category: "Casual & Activewear", id: "singlet", name: "Singlets / Undies", base_price: 150, iron_fee: 0, auto_iron: false },
+  { category: "Casual & Activewear", id: "joggers", name: "Joggers / Shorts", base_price: 400, iron_fee: 0, auto_iron: false },
+  { category: "Casual & Activewear", id: "singlet", name: "Singlets / Undies", base_price: 250, iron_fee: 0, auto_iron: false },
+  { category: "Casual & Activewear", id: "big gown", name: "Gowns (Large)", base_price: 1500, iron_fee: 400, auto_iron: true },
 
   { category: "Home & Bedding", id: "duvet", name: "Duvet / Blanket", base_price: 2500, iron_fee: 0, auto_iron: false },
-  { category: "Home & Bedding", id: "bedsheet", name: "Bed Sheets", base_price: 500, iron_fee: 0, auto_iron: false },
+  { category: "Home & Bedding", id: "bedsheet", name: "Bed Sheets", base_price: 1000, iron_fee: 0, auto_iron: false },
   { category: "Home & Bedding", id: "curtain", name: "Curtains (Per Panel)", base_price: 1000, iron_fee: 0, auto_iron: false },
   { category: "Home & Bedding", id: "pillowcase", name: "Pillow Cases", base_price: 150, iron_fee: 0, auto_iron: false },
-  { category: "Home & Bedding", id: "towel", name: "Towels", base_price: 300, iron_fee: 0, auto_iron: false },
+  { category: "Home & Bedding", id: "towel", name: "Towels (Small)", base_price: 500, iron_fee: 0, auto_iron: false },
+  { category: "Home & Bedding", id: "big towel", name: "Family Towels", base_price: 1000, iron_fee: 0, auto_iron: false },
 ];
 
 export const LAUNDRY_TRANSPORT = 1000;

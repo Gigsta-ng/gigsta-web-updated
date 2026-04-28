@@ -1,62 +1,63 @@
 import { Successcheck } from "@/assets/icons/svg";
 
-
 const SafetyMeasures = () => {
+
   const safetyFeatures = [
-    {
-      title: "Rigorous Vetting Process",
-      description:
-        "Every provider undergoes comprehensive background checks including criminal history, identity verification, and reference checks.",
-      checks: [
-        "National criminal background check",
-        "Sex offender registry check",
-        "Identity verification",
-        "Previous employer references",
-        "Skills and certification verification",
-      ],
-    },
-    {
-      title: "Secure Messaging",
-      description:
-        "Every provider undergoes comprehensive background checks including criminal history, identity verification, and reference checks.",
-      checks: [
-        "National criminal background check",
-        "Sex offender registry check",
-        "Identity verification",
-        "Previous employer references",
-        "Skills and certification verification",
-      ],
-    },
-    {
-      title: "Reference Checks",
-      description:
-        "Every provider undergoes comprehensive background checks including criminal history, identity verification, and reference checks.",
-      checks: [
-        "National criminal background check",
-        "Sex offender registry check",
-        "Identity verification",
-        "Previous employer references",
-        "Skills and certification verification",
-      ],
-    },
-    {
-      title: "Ongoing Monitoring",
-      description:
-        "Every provider undergoes comprehensive background checks including criminal history, identity verification, and reference checks.",
-      checks: [
-        "National criminal background check",
-        "Sex offender registry check",
-        "Identity verification",
-        "Previous employer references",
-        "Skills and certification verification",
-      ],
-    },
-  ];
+  {
+    title: "Verified Providers",
+    description:
+      "Every provider undergoes a thorough screening process before joining Gigsta, ensuring only qualified and trustworthy professionals are on our platform.",
+    checks: [
+      "National criminal background check",
+      "Government-issued ID verification",
+      "Sex offender registry check",
+      "Skills and certification verification",
+      "Previous employer references",
+    ],
+  },
+ {
+  title: "Ratings & Reviews",
+  description:
+    "Every completed job is open for honest feedback. Our review system keeps providers accountable and helps you make informed decisions before booking.",
+  checks: [
+    "Post-service rating required from clients",
+    "Verified reviews from real bookings only",
+    "Providers with low ratings are flagged",
+    "Clients can report unprofessional conduct",
+    "Review history visible on every provider profile",
+  ],
+},
+{
+  title: "Secure Payments",
+  description:
+    "Your money is protected at every step. We ensure payments are only processed through trusted channels with full transaction transparency.",
+  checks: [
+    "No cash payments to providers directly",
+    "Payment only after service confirmation",
+    "Receipts issued for every transaction",
+    "Refund process for disputed services",
+    "No hidden charges or surprise fees",
+  ],
+},
+  {
+    title: "Customer Support",
+    description:
+      "Our dedicated support team is always available to help resolve issues, answer questions, and ensure every experience on Gigsta meets your expectations.",
+    checks: [
+      "24/7 support availability",
+      "Fast response to complaints and disputes",
+      "Dedicated resolution team",
+      "Clear escalation process for serious issues",
+      "Follow-up to confirm issue resolution",
+    ],
+  },
+
+];
+
 
   return (
     <section className="min-h-screen w-full bg-gray-50 flex items-center py-20 md:py-20">
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
-   
         <div className="text-center mb-14">
           <h2 className="text-4xl sm:text-5xl md:text-[50px] font-bold leading-[1.2] text-[#0D0F11]">
             <span className="text-[#F0A500]">Gigsta</span> Safety Measures
@@ -74,7 +75,6 @@ const SafetyMeasures = () => {
               key={index}
               className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
-       
               <h3 className="text-xl font-bold text-[#0D0F11] mb-4">
                 {feature.title}
               </h3>
@@ -102,4 +102,3 @@ const SafetyMeasures = () => {
 };
 
 export default SafetyMeasures;
-
