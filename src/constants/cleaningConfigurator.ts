@@ -10,16 +10,6 @@ export const CLEANING_SPACE_OPTIONS: { id: CleaningSpaceSize; label: string }[] 
   { id: "office_small", label: "Office (Small)" },
 ];
 
-export const CLEANING_SPACE_PRICE_MULTIPLIER: Record<CleaningSpaceSize, number> = {
-  studio: 0.88,
-  "1br": 0.94,
-  "2br": 1,
-  "3br": 1.15,
-  "4br": 1.35,
-  "5br": 1.6,
-  office_small: 1.2,
-};
-
 export type CleaningTierDef = {
   id: ServiceTier;
   name: string;
@@ -66,15 +56,22 @@ export const CLEANING_TIERS: CleaningTierDef[] = [
   },
 ];
 
+export const CLEANING_PRICE_TABLE: Record<CleaningSpaceSize, Record<ServiceTier, number>> = {
+  studio:       { lite: 6_500,  standard: 9_000,  pro: 15_000 },
+  "1br":        { lite: 8_000,  standard: 11_000, pro: 25_000 },
+  "2br":        { lite: 10_000, standard: 14_000, pro: 35_000 },
+  "3br":        { lite: 12_500, standard: 17_000, pro: 45_000 },
+  "4br":        { lite: 16_000, standard: 22_000, pro: 55_000 },
+  "5br":        { lite: 20_000, standard: 28_000, pro: 70_000 },
+  office_small: { lite: 10_000, standard: 15_000, pro: 40_000 },
+};
+
 export function cleaningBasePriceForTierAndSpace(
   tierId: ServiceTier,
   spaceSize: CleaningSpaceSize
 ): number {
-  const tier = CLEANING_TIERS.find((t) => t.id === tierId);
-  if (!tier) return 0;
-  return Math.round(tier.price * CLEANING_SPACE_PRICE_MULTIPLIER[spaceSize]);
+  return CLEANING_PRICE_TABLE[spaceSize]?.[tierId] ?? 0;
 }
-
 
 export const CLEANING_ADDONS: {
   id: CleaningAddonId;
