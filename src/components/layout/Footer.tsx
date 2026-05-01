@@ -49,7 +49,7 @@ const Footer = () => {
       {/* Main Footer Content */}
       <div className="bg-gray-50 w-full">
         <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 ">
             <div>
               <div className="flex items-center gap-2 mb-6 -mt-2">
                 <img
@@ -65,7 +65,7 @@ const Footer = () => {
                 get real job requests and earn more.
               </p>
             </div>
-            <div>
+            <div className="md:justify-self-center">
               <h3 className="font-semibold text-lg text-[#0D0F11] mb-8">
                 | Quick Links
               </h3>
@@ -98,7 +98,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            <div>
+            <div  className="md:justify-self-end">
               <h4 className="font-semibold text-lg text-[#0D0F11] mb-8">
                 | Support
               </h4>
