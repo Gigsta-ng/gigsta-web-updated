@@ -13,15 +13,11 @@ export type CleaningAddonId =
   | "fridge"
   | "dishes"
   | "windows"
-  | "cooking"
   | "wardrobe"
   | "microwave_oven"
   | "extra_toilet"
   | "ceiling_fan"
-  | "trash_removal"
   | "market_run"
-  | "wash_clothes"
-  | "ironing";
 
 export interface CleaningServiceConfiguration {
   service: "cleaning";
