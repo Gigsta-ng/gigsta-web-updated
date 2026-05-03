@@ -529,16 +529,15 @@ const ServiceRequestForm = () => {
       });
       setSheetConfiguration(null);
 
-      // Navigate to success page
-    navigate("/request/success", {
-      replace: true,
-      state: {
-        fullName: values.fullName,
-        service: values.selectService,
-        pricingGroup: values.selectPricingGroup,
-        package: values.selectPackage,
-      },
-    });
+      // Navigate to whatsapp
+      const excludedFields = ['Pricing Group', 'Configuration Details'];
+      const message = Object.entries(sheetData)
+        .filter(([key, value]) => !excludedFields.includes(key) && value)
+        .map(([key, value]) => `${key}: ${value}`)
+        .join("\n");
+      const formattedNumber = import.meta.env.VITE_WHATSAPP_NUMBER.replace(/[\s+\-()]/g, "");
+      const whatsappUrl = `https://wa.me/${formattedNumber}?text=${encodeURIComponent(message)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
     } catch (error) {
       console.error('Error submitting service request:', error);
       toast.error('Failed to submit service request', {
