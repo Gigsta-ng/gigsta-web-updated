@@ -66,7 +66,7 @@ const LaundryConfigurator = ({
   });
   const [tier, setTier] = useState<ServiceTier | null>(() => {
     if (typeof window === "undefined") return null;
-    return loadServicesDraft()?.laundry?.tier ?? null;
+    return loadServicesDraft()?.laundry?.tier ?? "standard";
   });
 
   useEffect(() => {
@@ -88,13 +88,6 @@ const LaundryConfigurator = ({
 
   const totalPrice = tier !== null ? tierPrices[tier] : 0;
   const hasItems = washTotal > 0;
-
-  /** Default to Standard (popular) as soon as the cart has at least one item. */
-  useEffect(() => {
-    if (washTotal > 0 && tier === null) {
-      setTier("standard");
-    }
-  }, [washTotal, tier]);
 
   const updateQty = (id: string, delta: number) => {
     setCart((prev) => {

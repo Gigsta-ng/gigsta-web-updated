@@ -35,7 +35,7 @@ const CleaningConfigurator = ({
   });
   const [tier, setTier] = useState<ServiceTier | null>(() => {
     if (typeof window === "undefined") return null;
-    return loadServicesDraft()?.cleaning?.tier ?? null;
+    return loadServicesDraft()?.cleaning?.tier ?? "standard";
   });
   const [addons, setAddons] = useState<Record<CleaningAddonId, boolean>>(() => {
     if (typeof window === "undefined") return { ...defaultAddons };
@@ -97,9 +97,11 @@ const CleaningConfigurator = ({
               <button
                 key={t.id}
                 type="button"
+                disabled={!spaceSize}
                 onClick={() => setTier(t.id)}
                 className={cn(
                   "text-left rounded-xl p-6 border transition-all hover:-translate-y-0.5 hover:shadow-md relative",
+                  !spaceSize && "opacity-60 cursor-not-allowed",
                   tier === t.id
                     ? "border-2 border-[#F0A500] bg-amber-50"
                     : "border border-gray-200 bg-white"
@@ -113,7 +115,7 @@ const CleaningConfigurator = ({
                 <h4 className="text-lg font-bold text-gray-900">{t.name}</h4>
                 <p className="mt-2 text-3xl font-extrabold text-[#0D0F11]">
                   {formatNgn(
-                    cleaningBasePriceForTierAndSpace(t.id, spaceSize ?? "2br")
+                    cleaningBasePriceForTierAndSpace(t.id, spaceSize ?? "default")
                   )}
                 </p>
                 <p className="text-sm text-gray-600 mt-2 border-b border-gray-100 pb-4">

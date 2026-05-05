@@ -1,4 +1,5 @@
 export type CleaningSpaceSize =
+  | "default"
   | "studio"
   | "1br"
   | "2br"
