@@ -9,7 +9,6 @@ const TrustAndSafety = () => {
       <SEO 
         title="Trust & Safety - Verified Service Providers in Uyo"
         description="Gigsta ensures your safety with verified, insured service providers. Learn about our vetting process, safety measures, and guarantees for peace of mind."
-        url="https://gigsta.pro/trust-and-safety"
         keywords="verified service providers Uyo, safe home services, insured cleaners Uyo, trusted home services, gigsta safety"
       />
       <SafetyMeasures />

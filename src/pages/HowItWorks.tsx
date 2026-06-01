@@ -78,7 +78,6 @@ const HowGigstaWorks = () => {
       <SEO 
         title="How Gigsta Works - Simple Steps to Get Started"
         description="Learn how Gigsta works for clients and providers. Simple 3-step process: post tasks, get matched, job gets done. Join thousands of satisfied customers in Uyo."
-        url="https://gigsta.pro/how-it-works"
         keywords="how gigsta works, book home services Uyo, become service provider Uyo, gigsta process"
       />
       <section className="min-h-screen w-full bg-gray-50 flex items-center py-20 md:py-20">
