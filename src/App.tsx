@@ -4,8 +4,13 @@ import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import { Toaster } from "@/components/ui/sonner";
 import { Outlet } from "react-router-dom";
+import ReactGA from 'react-ga4'
+import { useEffect } from "react";
 
 const App = () => {
+  useEffect(() => {
+    ReactGA.send({hitType: "pageview", page: window.location.pathname})
+  })
   return (
     <>
       <ScrollToTop />

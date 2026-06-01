@@ -16,6 +16,7 @@ import Waitlist from "./pages/waitlist";
 import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import ReactGA from 'react-ga4'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,12 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+// Initialize GA4 with your Vite env variable
+const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID;
+if (measurementId) {
+  ReactGA.initialize(measurementId);
+}
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
